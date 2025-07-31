@@ -1,0 +1,36 @@
+package com.example.prakriti;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.widget.Button;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+
+public class Instruction4 extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_instruction4);
+
+        Button b1 = findViewById(R.id.btn_next);
+        Button b2 = findViewById(R.id.btn_back);
+
+        b2.setOnClickListener(v -> {
+            Intent intent = new Intent(Instruction4.this, Instruction3.class);
+            startActivity(intent);
+            finish();
+            overridePendingTransition(0, 0);
+        });
+
+        b1.setOnClickListener(v -> {
+            Intent intent = new Intent(Instruction4.this, Instruction5.class);
+            startActivity(intent);
+            finish();
+            overridePendingTransition(0, 0);
+
+        });
+    }
+}

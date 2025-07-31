@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary_green">#156B3E</color>
+    <color name="background_light">#f5f5f5</color>
+    <color name="text_primary">#555555</color>
+    <color name="text_secondary">#666666</color>
+    <color name="text_dark_green">#1B4332</color>
+    <color name="text_hint">#999999</color>
+    <color name="indicator_inactive">#E0E0E0</color>
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+</resources>
+
+
+
+
+
