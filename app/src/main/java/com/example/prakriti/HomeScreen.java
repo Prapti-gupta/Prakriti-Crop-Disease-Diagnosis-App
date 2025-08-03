@@ -3,6 +3,7 @@ package com.example.prakriti;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
@@ -20,6 +21,13 @@ public class HomeScreen extends AppCompatActivity {
         LinearLayout navNPK = findViewById(R.id.nav_npk);
         LinearLayout navProfile = findViewById(R.id.nav_profile);
         ImageButton btnCamera = findViewById(R.id.btn_camera);
+        Button app_instructions = findViewById(R.id.app_instructions);
+
+        app_instructions.setOnClickListener(v -> {
+            Intent intent = new Intent(HomeScreen.this, HowToUseTheApp.class);
+            startActivity(intent);
+            overridePendingTransition(0, 0);
+        });
 
         // Set click listeners
         navHome.setOnClickListener(v -> {
@@ -39,6 +47,7 @@ public class HomeScreen extends AppCompatActivity {
             startActivity(intent);
             overridePendingTransition(0, 0);
         });
+
 
         navProfile.setOnClickListener(v -> {
             Intent intent = new Intent(HomeScreen.this, ProfileScreen.class);

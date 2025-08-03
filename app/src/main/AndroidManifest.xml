@@ -1,9 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
     <!-- Permissions and features should stay outside the application tag -->
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
         android:maxSdkVersion="32" />
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
 
@@ -21,6 +22,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Prakriti"
         tools:targetApi="31">
+        <activity
+            android:name=".HowToUseTheApp"
+            android:exported="false" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -30,34 +34,58 @@
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
-        </provider>
-
-        <!-- Launcher activity -->
+        </provider> <!-- Launcher activity -->
         <activity
             android:name=".SplashScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <!-- Other activities -->
-        <activity android:name=".MainActivity" android:exported="true" />
-        <activity android:name=".HomeScreen" android:exported="false" />
-        <activity android:name=".Crops" android:exported="false" />
-        <activity android:name=".CropsDescription" android:exported="false" />
-        <activity android:name=".CameraDescription" android:exported="false" />
-        <activity android:name=".CameraActivity" android:exported="false" />
-        <activity android:name=".NPKCalculator" android:exported="false" />
-        <activity android:name=".ProfileScreen" android:exported="false" />
-        <activity android:name=".Instruction1" android:exported="false" />
-        <activity android:name=".Instruction2" android:exported="false" />
-        <activity android:name=".Instruction3" android:exported="false" />
-        <activity android:name=".Instruction4" android:exported="false" />
-        <activity android:name=".Instruction5" android:exported="false" />
-        <activity android:name=".OfflineInstruction" android:exported="false" />
-
+        </activity> <!-- Other activities -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true" />
+        <activity
+            android:name=".HomeScreen"
+            android:exported="false" />
+        <activity
+            android:name=".Crops"
+            android:exported="false" />
+        <activity
+            android:name=".CropsDescription"
+            android:exported="false" />
+        <activity
+            android:name=".CameraDescription"
+            android:exported="false" />
+        <activity
+            android:name=".CameraActivity"
+            android:exported="false" />
+        <activity
+            android:name=".NPKCalculator"
+            android:exported="false" />
+        <activity
+            android:name=".ProfileScreen"
+            android:exported="false" />
+        <activity
+            android:name=".Instruction1"
+            android:exported="false" />
+        <activity
+            android:name=".Instruction2"
+            android:exported="false" />
+        <activity
+            android:name=".Instruction3"
+            android:exported="false" />
+        <activity
+            android:name=".Instruction4"
+            android:exported="false" />
+        <activity
+            android:name=".Instruction5"
+            android:exported="false" />
+        <activity
+            android:name=".OfflineInstruction"
+            android:exported="false" />
     </application>
 
 </manifest>

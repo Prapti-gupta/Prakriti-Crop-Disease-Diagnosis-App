@@ -19,6 +19,10 @@ public class Instruction5 extends AppCompatActivity {
         Button b2 = findViewById(R.id.btn_allow);
 
         b2.setOnClickListener(v -> {
+            Intent intent = new Intent(Instruction5.this, HomeScreen.class);
+            startActivity(intent);
+            finish();
+            overridePendingTransition(0, 0);
 
         });
 

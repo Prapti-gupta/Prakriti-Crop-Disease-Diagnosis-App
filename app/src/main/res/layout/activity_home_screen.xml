@@ -14,21 +14,422 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:background="@color/background_light">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:paddingBottom="16dp">
 
-                <!-- Example Content -->
-                <TextView
+                <!-- Header Section -->
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Scrollable content here"
-                    android:padding="16dp"
-                    android:textSize="18sp" />
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="24dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Welcome!"
+                            android:textSize="28sp"
+                            android:textColor="@color/text_dark_green"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:layout_marginTop="4dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Kisan Ji"
+                                android:textSize="16sp"
+                                android:textColor="@color/text_secondary" />
+
+                            <ImageView
+                                android:layout_width="16dp"
+                                android:layout_height="16dp"
+                                android:layout_marginStart="8dp"
+                                android:src="@drawable/leaf"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <!-- Profile Image -->
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:src="@drawable/profile_placeholder"/>
+
+                </LinearLayout>
+
+                <!-- Stats Cards -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="24dp">
+
+                    <!-- Crops Diagnosed Card -->
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="8dp"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="2dp"
+                        android:backgroundTint="#E8F5E8">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="16dp"
+                            android:gravity="center">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="5"
+                                android:textSize="32sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/text_dark_green" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Crops Diagnosed"
+                                android:textSize="12sp"
+                                android:textColor="@color/text_secondary"
+                                android:textAlignment="center" />
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <!-- Last Diagnosis Card -->
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="8dp"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="2dp"
+                        android:backgroundTint="#E8F5E8">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:paddingTop="28dp"
+                            android:paddingBottom="16dp"
+                            android:gravity="center">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Aug 1"
+                                android:textSize="20sp"
+                                android:textStyle="bold"
+                                android:layout_marginBottom="2dp"
+                                android:textColor="@color/text_dark_green" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Last Diagnosis"
+                                android:textSize="12sp"
+                                android:textColor="@color/text_secondary"
+                                android:textAlignment="center" />
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+
+                <!-- How to use App Button -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="24dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="2dp"
+                    android:backgroundTint="@color/primary_green"
+                    android:clickable="true"
+                    android:foreground="?android:attr/selectableItemBackground">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="12dp"
+                        android:gravity="center_vertical">
+
+                        <Button
+                            android:id="@+id/app_instructions"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="How to use the App ?"
+                            android:textSize="16sp"
+                            android:textColor="@color/white"
+                            android:textStyle="bold"
+                            android:gravity="start|center_vertical"
+                            android:paddingStart="16dp" />
+
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/no_wifi"/>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <!-- Products Recommended Section -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Products Recommended:"
+                    android:textSize="16sp"
+                    android:textColor="@color/text_primary"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="12dp" />
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="24dp"
+                    android:scrollbars="none">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingEnd="16dp">
+
+                        <!-- Product 1 -->
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="100dp"
+                            android:layout_height="80dp"
+                            android:layout_marginEnd="12dp"
+                            app:cardCornerRadius="8dp"
+                            app:cardElevation="2dp"
+                            android:clickable="true"
+                            android:foreground="?android:attr/selectableItemBackground">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:background="@drawable/indicator_inactive">
+
+                                <ImageView
+                                    android:layout_width="80dp"
+                                    android:layout_height="80dp"
+                                    android:src="@drawable/fertilizer"
+                                     />
+
+                            </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                        <!-- Product 2 -->
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="100dp"
+                            android:layout_height="80dp"
+                            android:layout_marginEnd="12dp"
+                            app:cardCornerRadius="8dp"
+                            app:cardElevation="2dp"
+                            android:clickable="true"
+                            android:foreground="?android:attr/selectableItemBackground">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:background="@color/indicator_inactive">
+
+                                <ImageView
+                                    android:layout_width="80dp"
+                                    android:layout_height="80dp"
+                                    android:src="@drawable/fertilizer"
+                                     />
+
+                            </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                        <!-- Product 3 -->
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="100dp"
+                            android:layout_height="80dp"
+                            android:layout_marginEnd="12dp"
+                            app:cardCornerRadius="8dp"
+                            app:cardElevation="2dp"
+                            android:clickable="true"
+                            android:foreground="?android:attr/selectableItemBackground">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:background="@color/indicator_inactive">
+
+                                <ImageView
+                                    android:layout_width="80dp"
+                                    android:layout_height="80dp"
+                                    android:src="@drawable/fertilizer"
+                                     />
+
+                            </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                        <!-- Product 4 -->
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="100dp"
+                            android:layout_height="80dp"
+                            android:layout_marginEnd="12dp"
+                            app:cardCornerRadius="8dp"
+                            app:cardElevation="2dp"
+                            android:clickable="true"
+                            android:foreground="?android:attr/selectableItemBackground">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:background="@color/indicator_inactive">
+
+                                <ImageView
+                                    android:layout_width="80dp"
+                                    android:layout_height="80dp"
+                                    android:src="@drawable/fertilizer"
+                                     />
+
+                            </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                        <!-- Product 5 -->
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="100dp"
+                            android:layout_height="80dp"
+                            android:layout_marginEnd="12dp"
+                            app:cardCornerRadius="8dp"
+                            app:cardElevation="2dp"
+                            android:clickable="true"
+                            android:foreground="?android:attr/selectableItemBackground">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:background="@color/indicator_inactive">
+
+                                <ImageView
+                                    android:layout_width="80dp"
+                                    android:layout_height="80dp"
+                                    android:src="@drawable/fertilizer"
+                                     />
+
+                            </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                        <!-- Product 6 -->
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="100dp"
+                            android:layout_height="80dp"
+                            android:layout_marginEnd="12dp"
+                            app:cardCornerRadius="8dp"
+                            app:cardElevation="2dp"
+                            android:clickable="true"
+                            android:foreground="?android:attr/selectableItemBackground">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:background="@color/indicator_inactive">
+
+                                <ImageView
+                                    android:layout_width="80dp"
+                                    android:layout_height="80dp"
+                                    android:src="@drawable/fertilizer"
+                                     />
+
+                            </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                    </LinearLayout>
+
+                </HorizontalScrollView>
+
+                <!-- Tip of the Day Section -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tip of the Day:"
+                    android:textSize="16sp"
+                    android:textColor="@color/text_primary"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="12dp" />
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="2dp"
+                    android:backgroundTint="@color/primary_green">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/tip"
+                            android:layout_marginEnd="12dp" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Water your plants daily."
+                            android:textSize="16sp"
+                            android:textColor="@color/white"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
             </LinearLayout>
+
         </ScrollView>
 
         <!-- Bottom Navigation Bar -->
@@ -64,7 +465,7 @@
                     android:layout_height="wrap_content"
                     android:text="Home"
                     android:textSize="12sp"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/white"
                     android:layout_marginTop="4dp" />
             </LinearLayout>
 
@@ -92,7 +493,7 @@
                     android:layout_height="wrap_content"
                     android:text="Crops"
                     android:textSize="12sp"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/white"
                     android:layout_marginTop="4dp" />
             </LinearLayout>
 
@@ -128,7 +529,7 @@
                     android:layout_height="wrap_content"
                     android:text="NPK"
                     android:textSize="12sp"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/white"
                     android:layout_marginTop="4dp" />
             </LinearLayout>
 
@@ -157,7 +558,7 @@
                     android:layout_height="wrap_content"
                     android:text="Profile"
                     android:textSize="12sp"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/white"
                     android:layout_marginTop="4dp" />
             </LinearLayout>
         </LinearLayout>
