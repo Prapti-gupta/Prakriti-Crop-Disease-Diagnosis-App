@@ -1,0 +1,646 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFFFFF">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        <!-- One direct child: LinearLayout -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+    <!-- Header Text -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Please specify the crop you need\ntreatment advice for"
+        android:textSize="20sp"
+        android:textColor="#333333"
+        android:textAlignment="center"
+        android:fontFamily="sans-serif-medium"
+        android:lineSpacingExtra="4dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="40dp"
+        android:layout_marginHorizontal="20dp" />
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="3"
+        android:rowCount="4"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginBottom="40dp">
+
+        <!-- Row 1: Apple, Cotton, Cherry -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_margin="15dp">
+
+            <FrameLayout
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@drawable/circle_background"
+                android:elevation="2dp"
+                android:clipToOutline="true"
+                android:outlineProvider="background">
+
+                <ImageButton
+                    android:id="@+id/crop_desc"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/apple"
+                    android:background="@null"
+                    android:scaleType="centerInside"
+                    android:padding="8dp" />
+            </FrameLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Apple"
+                android:textSize="14sp"
+                android:textColor="@color/primary_green"
+                android:fontFamily="sans-serif-medium"
+                android:layout_marginTop="8dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_margin="15dp">
+
+            <FrameLayout
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@drawable/circle_background"
+                android:elevation="2dp"
+                android:clipToOutline="true"
+                android:outlineProvider="background">
+
+                <ImageButton
+                    android:id="@+id/crop_desc2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/cotton"
+                    android:background="@null"
+                    android:scaleType="centerInside"
+                    android:padding="8dp" />
+            </FrameLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cotton"
+                android:textSize="14sp"
+                android:textColor="@color/primary_green"
+                android:fontFamily="sans-serif-medium"
+                android:layout_marginTop="8dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_margin="15dp">
+
+            <FrameLayout
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@drawable/circle_background"
+                android:elevation="2dp"
+                android:clipToOutline="true"
+                android:outlineProvider="background">
+
+                <ImageButton
+                    android:id="@+id/crop_desc3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/cherry"
+                    android:background="@null"
+                    android:scaleType="centerInside"
+                    android:padding="8dp" />
+            </FrameLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cherry"
+                android:textSize="14sp"
+                android:textColor="@color/primary_green"
+                android:fontFamily="sans-serif-medium"
+                android:layout_marginTop="8dp" />
+        </LinearLayout>
+
+        <!-- Repeat the same for rows 2, 3, 4 -->
+
+        <!-- Row 2: Jute, Coffee, Corn -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_margin="15dp">
+
+            <FrameLayout
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@drawable/circle_background"
+                android:elevation="2dp"
+                android:clipToOutline="true"
+                android:outlineProvider="background">
+
+                <ImageButton
+                    android:id="@+id/crop_desc4"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/jute"
+                    android:background="@null"
+                    android:scaleType="centerInside"
+                    android:padding="8dp" />
+            </FrameLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Jute"
+                android:textSize="14sp"
+                android:textColor="@color/primary_green"
+                android:fontFamily="sans-serif-medium"
+                android:layout_marginTop="8dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_margin="15dp">
+
+            <FrameLayout
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@drawable/circle_background"
+                android:elevation="2dp"
+                android:clipToOutline="true"
+                android:outlineProvider="background">
+
+                <ImageButton
+                    android:id="@+id/crop_desc5"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/coffee"
+                    android:background="@null"
+                    android:scaleType="centerInside"
+                    android:padding="8dp" />
+            </FrameLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Coffee"
+                android:textSize="14sp"
+                android:textColor="@color/primary_green"
+                android:fontFamily="sans-serif-medium"
+                android:layout_marginTop="8dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_margin="15dp">
+
+            <FrameLayout
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@drawable/circle_background"
+                android:elevation="2dp"
+                android:clipToOutline="true"
+                android:outlineProvider="background">
+
+                <ImageButton
+                    android:id="@+id/crop_desc6"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/corn"
+                    android:background="@null"
+                    android:scaleType="centerInside"
+                    android:padding="8dp" />
+            </FrameLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Corn"
+                android:textSize="14sp"
+                android:textColor="@color/primary_green"
+                android:fontFamily="sans-serif-medium"
+                android:layout_marginTop="8dp" />
+        </LinearLayout>
+
+        <!-- Row 3: Grape, Potato, Rice -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_margin="15dp">
+
+            <FrameLayout
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@drawable/circle_background"
+                android:elevation="2dp"
+                android:clipToOutline="true"
+                android:outlineProvider="background">
+
+                <ImageButton
+                    android:id="@+id/crop_desc7"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/grapes"
+                    android:background="@null"
+                    android:scaleType="centerInside"
+                    android:padding="8dp" />
+            </FrameLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Grapes"
+                android:textSize="14sp"
+                android:textColor="@color/primary_green"
+                android:fontFamily="sans-serif-medium"
+                android:layout_marginTop="8dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_margin="15dp">
+
+            <FrameLayout
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@drawable/circle_background"
+                android:elevation="2dp"
+                android:clipToOutline="true"
+                android:outlineProvider="background">
+
+                <ImageButton
+                    android:id="@+id/crop_desc8"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/potato"
+                    android:background="@null"
+                    android:scaleType="centerInside"
+                    android:padding="8dp" />
+            </FrameLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Potato"
+                android:textSize="14sp"
+                android:textColor="@color/primary_green"
+                android:fontFamily="sans-serif-medium"
+                android:layout_marginTop="8dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_margin="15dp">
+
+            <FrameLayout
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@drawable/circle_background"
+                android:elevation="2dp"
+                android:clipToOutline="true"
+                android:outlineProvider="background">
+
+                <ImageButton
+                    android:id="@+id/crop_desc9"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/rice"
+                    android:background="@null"
+                    android:scaleType="centerInside"
+                    android:padding="8dp" />
+            </FrameLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rice"
+                android:textSize="14sp"
+                android:textColor="@color/primary_green"
+                android:fontFamily="sans-serif-medium"
+                android:layout_marginTop="8dp" />
+        </LinearLayout>
+
+        <!-- Row 4: Sugarcane, Strawberry, Wheat -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_margin="15dp">
+
+            <FrameLayout
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@drawable/circle_background"
+                android:elevation="2dp"
+                android:clipToOutline="true"
+                android:outlineProvider="background">
+
+                <ImageButton
+                    android:id="@+id/crop_desc10"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/sugarcane"
+                    android:background="@null"
+                    android:scaleType="centerInside"
+                    android:padding="8dp" />
+            </FrameLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sugarcane"
+                android:textSize="14sp"
+                android:textColor="@color/primary_green"
+                android:fontFamily="sans-serif-medium"
+                android:layout_marginTop="8dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_margin="15dp">
+
+            <FrameLayout
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@drawable/circle_background"
+                android:elevation="2dp"
+                android:clipToOutline="true"
+                android:outlineProvider="background">
+
+                <ImageButton
+                    android:id="@+id/crop_desc11"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/strawberry"
+                    android:background="@null"
+                    android:scaleType="centerInside"
+                    android:padding="8dp" />
+            </FrameLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Strawberry"
+                android:textSize="14sp"
+                android:textColor="@color/primary_green"
+                android:fontFamily="sans-serif-medium"
+                android:layout_marginTop="8dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_margin="15dp">
+
+            <FrameLayout
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@drawable/circle_background"
+                android:elevation="2dp"
+                android:clipToOutline="true"
+                android:outlineProvider="background">
+
+                <ImageButton
+                    android:id="@+id/crop_desc12"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/wheat"
+                    android:background="@null"
+                    android:scaleType="centerInside"
+                    android:padding="8dp" />
+            </FrameLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Wheat"
+                android:textSize="14sp"
+                android:textColor="@color/primary_green"
+                android:fontFamily="sans-serif-medium"
+                android:layout_marginTop="8dp" />
+        </LinearLayout>
+    </GridLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Bottom Navigation Bar -->
+    <LinearLayout
+        android:id="@+id/bottom_nav_bar"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:orientation="horizontal"
+        android:background="@color/primary_green"
+        android:gravity="center_vertical">
+
+        <!-- Home Tab -->
+        <LinearLayout
+            android:id="@+id/nav_home"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="8dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?android:attr/selectableItemBackground">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_home"
+                android:scaleType="fitCenter" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Home"
+                android:textSize="12sp"
+                android:textColor="#FFFFFF"
+                android:layout_marginTop="4dp" />
+        </LinearLayout>
+
+        <!-- Crops Tab -->
+        <LinearLayout
+            android:id="@+id/nav_crops"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="8dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?android:attr/selectableItemBackground">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_crops"
+                android:scaleType="fitCenter" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Crops"
+                android:textSize="12sp"
+                android:textColor="#FFFFFF"
+                android:layout_marginTop="4dp" />
+        </LinearLayout>
+
+        <!-- Empty space for Camera -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center" />
+
+        <!-- NPK Tab -->
+        <LinearLayout
+            android:id="@+id/nav_npk"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="8dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?android:attr/selectableItemBackground">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_npk"
+                android:scaleType="fitCenter" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NPK"
+                android:textSize="12sp"
+                android:textColor="#FFFFFF"
+                android:layout_marginTop="4dp" />
+        </LinearLayout>
+
+        <!-- Profile Tab -->
+        <LinearLayout
+            android:id="@+id/nav_profile"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="8dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?android:attr/selectableItemBackground">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_profile"
+                android:scaleType="fitCenter"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Profile"
+                android:textSize="12sp"
+                android:textColor="#FFFFFF"
+                android:layout_marginTop="4dp" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
+
+    <!-- Floating Camera Button on Top -->
+    <FrameLayout
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="35dp"
+        android:background="@drawable/circle_white_background"
+        android:elevation="8dp">
+
+        <FrameLayout
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:layout_gravity="center"
+            android:background="@drawable/circle_green_background"
+            android:elevation="10dp" />
+
+        <ImageButton
+            android:id="@+id/btn_camera"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_camera"
+            android:background="@android:color/transparent"
+            android:scaleType="fitCenter"
+            android:elevation="12dp"
+            android:clickable="true"
+            android:focusable="true" />
+    </FrameLayout>
+</FrameLayout>
