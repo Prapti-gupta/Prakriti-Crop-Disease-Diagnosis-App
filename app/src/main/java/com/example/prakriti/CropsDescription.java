@@ -3,6 +3,7 @@ package com.example.prakriti;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,22 +15,13 @@ public class CropsDescription extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crops_description);
 
-        ImageButton Home = findViewById(R.id.btn_home);
-        ImageButton Crops = findViewById(R.id.btn_crops);
+        LinearLayout Home = findViewById(R.id.nav_home);
+        LinearLayout Crops = findViewById(R.id.nav_crops);
         ImageButton Camera = findViewById(R.id.btn_camera);
-        ImageButton NPK = findViewById(R.id.btn_npk);
-        ImageButton Profile = findViewById(R.id.btn_profile);
-        TextView Home_text = findViewById(R.id.btn_home_text);
-        TextView Crops_text = findViewById(R.id.btn_crops_text);
-        TextView NPK_text = findViewById(R.id.btn_npk_text);
-        TextView Profile_text = findViewById(R.id.btn_profile_text);
+        LinearLayout NPK = findViewById(R.id.nav_npk);
+        LinearLayout Profile = findViewById(R.id.nav_profile);
 
         Home.setOnClickListener(v -> {
-            startActivity(new Intent(CropsDescription.this, HomeScreen.class));
-            overridePendingTransition(0, 0);
-        });
-
-        Home_text.setOnClickListener(v -> {
             startActivity(new Intent(CropsDescription.this, HomeScreen.class));
             overridePendingTransition(0, 0);
         });
@@ -38,12 +30,6 @@ public class CropsDescription extends AppCompatActivity {
             startActivity(new Intent(CropsDescription.this, Crops.class));
             overridePendingTransition(0, 0);
         });
-
-        Crops_text.setOnClickListener(v -> {
-            startActivity(new Intent(CropsDescription.this, Crops.class));
-            overridePendingTransition(0, 0);
-        });
-
         Camera.setOnClickListener(v -> {
             startActivity(new Intent(CropsDescription.this, CameraDescription.class));
             overridePendingTransition(0, 0);
@@ -54,17 +40,7 @@ public class CropsDescription extends AppCompatActivity {
             overridePendingTransition(0, 0);
         });
 
-        NPK_text.setOnClickListener(v -> {
-            startActivity(new Intent(CropsDescription.this, NPKCalculator.class));
-            overridePendingTransition(0, 0);
-        });
-
         Profile.setOnClickListener(v -> {
-            startActivity(new Intent(CropsDescription.this, ProfileScreen.class));
-            overridePendingTransition(0, 0);
-        });
-
-        Profile_text.setOnClickListener(v -> {
             startActivity(new Intent(CropsDescription.this, ProfileScreen.class));
             overridePendingTransition(0, 0);
         });
