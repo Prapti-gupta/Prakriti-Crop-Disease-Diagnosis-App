@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -142,6 +147,7 @@
     </ScrollView>
     <!-- Bottom Navigation Bar -->
     <LinearLayout
+        android:id="@+id/bottom_nav_bar"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:orientation="horizontal"
@@ -150,23 +156,24 @@
 
         <!-- Home Tab -->
         <LinearLayout
+            android:id="@+id/nav_home"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical"
             android:gravity="center"
-            android:padding="8dp">
+            android:padding="8dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?android:attr/selectableItemBackground">
 
-            <ImageButton
-                android:id="@+id/btn_home"
+            <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/ic_home"
-                android:background="@android:color/transparent"
                 android:scaleType="fitCenter" />
 
             <TextView
-                android:id="@+id/btn_home_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Home"
@@ -177,23 +184,24 @@
 
         <!-- Crops Tab -->
         <LinearLayout
+            android:id="@+id/nav_crops"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical"
             android:gravity="center"
-            android:padding="8dp">
+            android:padding="8dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?android:attr/selectableItemBackground">
 
-            <ImageButton
-                android:id="@+id/btn_crops"
+            <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/ic_crops"
-                android:background="@android:color/transparent"
                 android:scaleType="fitCenter" />
 
             <TextView
-                android:id="@+id/btn_crops_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Crops"
@@ -202,59 +210,34 @@
                 android:layout_marginTop="4dp" />
         </LinearLayout>
 
-        <!-- Center Floating Button -->
-        <FrameLayout
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="-32dp"
-            android:background="@drawable/circle_white_background"
-            android:elevation="6dp"
-            android:clipChildren="false"
-            android:clipToPadding="false">
-
-            <FrameLayout
-                android:layout_width="52dp"
-                android:layout_height="52dp"
-                android:layout_gravity="center"
-                android:background="@drawable/circle_green_background"
-                android:elevation="8dp" />
-
-            <ImageButton
-                android:id="@+id/btn_camera"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_camera"
-                android:background="@android:color/transparent"
-                android:scaleType="fitCenter"
-                android:elevation="10dp" />
-        </FrameLayout>
-
-
-
-
-
-
-        <!-- NPK Tab -->
+        <!-- Empty space for Camera -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:gravity="center"
-            android:padding="8dp">
+            android:gravity="center" />
 
-            <ImageButton
-                android:id="@+id/btn_npk"
+        <!-- NPK Tab -->
+        <LinearLayout
+            android:id="@+id/nav_npk"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="8dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?android:attr/selectableItemBackground">
+
+            <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/ic_npk"
-                android:background="@android:color/transparent"
                 android:scaleType="fitCenter" />
 
             <TextView
-                android:id="@+id/btn_npk_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="NPK"
@@ -265,23 +248,25 @@
 
         <!-- Profile Tab -->
         <LinearLayout
+            android:id="@+id/nav_profile"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical"
             android:gravity="center"
-            android:padding="8dp">
+            android:padding="8dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?android:attr/selectableItemBackground">
 
-            <ImageButton
-                android:id="@+id/btn_profile"
+            <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/ic_profile"
-                android:background="@android:color/transparent"
-                android:scaleType="fitCenter" />
+                android:scaleType="fitCenter"
+                />
 
             <TextView
-                android:id="@+id/btn_profile_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Profile"
@@ -289,6 +274,35 @@
                 android:textColor="#FFFFFF"
                 android:layout_marginTop="4dp" />
         </LinearLayout>
-
     </LinearLayout>
 </LinearLayout>
+
+    <!-- Floating Camera Button on Top -->
+    <FrameLayout
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="35dp"
+        android:background="@drawable/circle_white_background"
+        android:elevation="8dp">
+
+        <FrameLayout
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:layout_gravity="center"
+            android:background="@drawable/circle_green_background"
+            android:elevation="10dp" />
+
+        <ImageButton
+            android:id="@+id/btn_camera"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_camera"
+            android:background="@android:color/transparent"
+            android:scaleType="fitCenter"
+            android:elevation="12dp"
+            android:clickable="true"
+            android:focusable="true" />
+    </FrameLayout>
+</FrameLayout>
