@@ -1,7 +1,25 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
+
     <style name="Base.Theme.Prakriti" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <!-- Customize your light theme here. -->
+        <item name="colorPrimary">@color/primary_green</item>
+        <item name="colorPrimaryVariant">@color/text_dark_green</item>
+        <item name="colorOnPrimary">@android:color/white</item>
+
+        <!-- Status Bar Configuration -->
+        <item name="android:statusBarColor">@color/primary_green</item>
+        <item name="android:windowLightStatusBar">false</item> <!-- White text/icons on green background -->
     </style>
+
+    <style name="Theme.Prakriti" parent="Base.Theme.Prakriti">
+        <item name="colorPrimary">@color/primary_green</item>
+        <item name="colorPrimaryVariant">@color/text_dark_green</item>
+        <item name="colorOnPrimary">@android:color/white</item>
+
+        <!-- Ensure status bar is consistent -->
+        <item name="android:statusBarColor">@color/primary_green</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+
 </resources>

@@ -8,14 +8,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="#F5F5F5">
+        android:background="@color/background_light">
 
         <!-- Profile Section -->
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="24dp"
-            android:background="@android:color/white">
+            android:background="@color/primary_green">
 
             <!-- Profile Image -->
             <ImageView
@@ -37,8 +37,8 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="12dp"
                 android:text="Kisan Ji"
-                android:textSize="16sp"
-                android:textColor="#333333"
+                android:textSize="18sp"
+                android:textColor="@color/white"
                 android:textStyle="bold" />
 
         </RelativeLayout>
@@ -80,7 +80,7 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_arrow_right"
-                    android:tint="#CCCCCC" />
+                    android:tint="@color/primary_green" />
 
             </LinearLayout>
 
@@ -117,7 +117,7 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_arrow_right"
-                    android:tint="#CCCCCC" />
+                    android:tint="@color/primary_green" />
 
             </LinearLayout>
 
@@ -154,7 +154,7 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_arrow_right"
-                    android:tint="#CCCCCC" />
+                    android:tint="@color/primary_green" />
 
             </LinearLayout>
 
@@ -191,7 +191,7 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_arrow_right"
-                    android:tint="#CCCCCC" />
+                    android:tint="@color/primary_green" />
 
             </LinearLayout>
 
@@ -228,7 +228,7 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_arrow_right"
-                    android:tint="#CCCCCC" />
+                    android:tint="@color/primary_green" />
 
             </LinearLayout>
 
@@ -265,7 +265,7 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_arrow_right"
-                    android:tint="#CCCCCC" />
+                    android:tint="@color/primary_green" />
 
             </LinearLayout>
 
@@ -297,7 +297,7 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_home"
-                    android:tint="#FFFFFF"
+                    android:tint="@color/white"
                     android:scaleType="fitCenter" />
 
                 <TextView
@@ -305,7 +305,7 @@
                     android:layout_height="wrap_content"
                     android:text="Home"
                     android:textSize="12sp"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/white"
                     android:layout_marginTop="4dp" />
             </LinearLayout>
 
@@ -326,7 +326,7 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_crops"
-                    android:tint="#FFFFFF"
+                    android:tint="@color/white"
                     android:scaleType="fitCenter" />
 
                 <TextView
@@ -334,7 +334,7 @@
                     android:layout_height="wrap_content"
                     android:text="Crops"
                     android:textSize="12sp"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/white"
                     android:layout_marginTop="4dp" />
             </LinearLayout>
 
@@ -363,7 +363,7 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_npk"
-                    android:tint="#FFFFFF"
+                    android:tint="@color/white"
                     android:scaleType="fitCenter" />
 
                 <TextView
@@ -371,7 +371,7 @@
                     android:layout_height="wrap_content"
                     android:text="NPK"
                     android:textSize="12sp"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/white"
                     android:layout_marginTop="4dp" />
             </LinearLayout>
 
@@ -392,7 +392,7 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_profile"
-                    android:tint="#FFFFFF"
+                    android:tint="@color/white"
                     android:scaleType="fitCenter" />
 
                 <TextView
@@ -400,7 +400,7 @@
                     android:layout_height="wrap_content"
                     android:text="Profile"
                     android:textSize="12sp"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/white"
                     android:layout_marginTop="4dp" />
             </LinearLayout>
         </LinearLayout>

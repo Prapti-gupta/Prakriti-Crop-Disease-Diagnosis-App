@@ -2,7 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F5F5"
+    android:background="@color/background_light"
     android:fillViewport="true">
 
     <LinearLayout
@@ -10,48 +10,51 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="20dp">
 
-        <!-- Header Section -->
+        <!-- Header Section with improved styling -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center_vertical"
-            android:background="@android:color/white"
-            android:padding="16dp"
-            android:layout_marginBottom="16dp"
-            android:elevation="2dp">
+            android:background="@color/white"
+            android:padding="20dp"
+            android:layout_marginBottom="24dp"
+            android:elevation="4dp"
+            android:layout_marginHorizontal="4dp">
 
             <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:src="@drawable/ic_plant"
                 android:background="@drawable/circle_green_background"
-                android:padding="8dp"
-                android:tint="@android:color/white" />
+                android:padding="10dp"
+                android:tint="@color/white" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_marginLeft="12dp"
-                android:text="Click on the Camera to capture the diseased leaf"
-                android:textSize="16sp"
-                android:textColor="#333333"
-                android:textStyle="bold" />
+                android:layout_marginStart="16dp"
+                android:text="Capture the diseased leaf for analysis"
+                android:textSize="18sp"
+                android:textColor="@color/text_dark_green"
+                android:textStyle="bold"
+                android:lineSpacingExtra="2dp" />
 
         </LinearLayout>
 
-        <!-- Step Progress Section -->
+        <!-- Enhanced Step Progress Section with 4 steps -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:background="@android:color/white"
-            android:padding="20dp"
-            android:layout_marginBottom="16dp"
-            android:elevation="2dp"
+            android:background="@color/white"
+            android:padding="24dp"
+            android:layout_marginBottom="24dp"
+            android:elevation="4dp"
+            android:layout_marginHorizontal="4dp"
             android:gravity="center">
 
             <!-- Step 1 -->
@@ -65,14 +68,15 @@
                 <FrameLayout
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:background="@drawable/circle_green_background">
+                    android:background="@drawable/circle_green_background"
+                    android:elevation="2dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:text="1"
-                        android:textColor="@android:color/white"
+                        android:textColor="@color/white"
                         android:textStyle="bold"
                         android:textSize="18sp" />
 
@@ -83,18 +87,18 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text="Upload"
-                    android:textSize="12sp"
-                    android:textColor="#4CAF50"
+                    android:textSize="11sp"
+                    android:textColor="@color/primary_green"
                     android:textStyle="bold" />
 
             </LinearLayout>
 
             <!-- Arrow 1 -->
             <ImageView
-                android:layout_width="30dp"
+                android:layout_width="24dp"
                 android:layout_height="20dp"
-                android:src="@drawable/ic_arrow_right_green"
-                />
+                android:layout_marginHorizontal="4dp"
+                android:src="@drawable/ic_arrow_right_green" />
 
             <!-- Step 2 -->
             <LinearLayout
@@ -107,14 +111,15 @@
                 <FrameLayout
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:background="@drawable/circle_green_background">
+                    android:background="@drawable/circle_green_background"
+                    android:elevation="2dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:text="2"
-                        android:textColor="@android:color/white"
+                        android:textColor="@color/white"
                         android:textStyle="bold"
                         android:textSize="18sp" />
 
@@ -125,18 +130,18 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text="Scan"
-                    android:textSize="12sp"
-                    android:textColor="#4CAF50"
+                    android:textSize="11sp"
+                    android:textColor="@color/primary_green"
                     android:textStyle="bold" />
 
             </LinearLayout>
 
             <!-- Arrow 2 -->
             <ImageView
-                android:layout_width="30dp"
+                android:layout_width="24dp"
                 android:layout_height="20dp"
-                android:src="@drawable/ic_arrow_right_green"
-                 />
+                android:layout_marginHorizontal="4dp"
+                android:src="@drawable/ic_arrow_right_green" />
 
             <!-- Step 3 -->
             <LinearLayout
@@ -149,14 +154,15 @@
                 <FrameLayout
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:background="@drawable/circle_green_background">
+                    android:background="@drawable/circle_green_background"
+                    android:elevation="2dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:text="3"
-                        android:textColor="@android:color/white"
+                        android:textColor="@color/white"
                         android:textStyle="bold"
                         android:textSize="18sp" />
 
@@ -166,54 +172,98 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="Result"
-                    android:textSize="12sp"
-                    android:textColor="#4CAF50"
+                    android:text="Check"
+                    android:textSize="11sp"
+                    android:textColor="@color/primary_green"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <!-- Arrow 3 -->
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="20dp"
+                android:layout_marginHorizontal="4dp"
+                android:src="@drawable/ic_arrow_right_green" />
+
+            <!-- Step 4 -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <FrameLayout
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/circle_green_background"
+                    android:elevation="2dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="4"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:textSize="18sp" />
+
+                </FrameLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Save PDF"
+                    android:textSize="11sp"
+                    android:textColor="@color/primary_green"
                     android:textStyle="bold" />
 
             </LinearLayout>
 
         </LinearLayout>
 
-        <!-- Camera and Gallery Section -->
+        <!-- Enhanced Camera and Gallery Section -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginBottom="16dp">
+            android:layout_marginBottom="24dp">
 
             <!-- Camera Card -->
             <LinearLayout
                 android:id="@+id/cardCamera"
                 android:layout_width="0dp"
-                android:layout_height="120dp"
+                android:layout_height="140dp"
                 android:layout_weight="1"
-                android:layout_marginRight="8dp"
+                android:layout_marginEnd="12dp"
                 android:orientation="vertical"
-                android:background="@android:color/white"
-                android:elevation="2dp"
+                android:background="@color/white"
+                android:elevation="6dp"
                 android:gravity="center"
-                android:padding="16dp"
+                android:padding="20dp"
                 android:clickable="true"
                 android:focusable="true"
-                >
+                android:foreground="?android:attr/selectableItemBackground">
 
                 <ImageView
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
                     android:src="@drawable/ic_camera"
                     android:background="@drawable/circle_green_background"
-                    android:padding="12dp"
-                    />
+                    android:padding="14dp"
+                    android:elevation="2dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="12dp"
                     android:text="Take a picture of the affected leaves"
-                    android:textSize="12sp"
-                    android:textColor="#666666"
+                    android:textSize="13sp"
+                    android:textColor="@color/text_secondary"
                     android:gravity="center"
+                    android:lineSpacingExtra="1dp"
                     android:maxLines="2" />
 
             </LinearLayout>
@@ -222,81 +272,144 @@
             <LinearLayout
                 android:id="@+id/cardGallery"
                 android:layout_width="0dp"
-                android:layout_height="120dp"
+                android:layout_height="140dp"
                 android:layout_weight="1"
-                android:layout_marginLeft="8dp"
+                android:layout_marginStart="12dp"
                 android:orientation="vertical"
-                android:background="@android:color/white"
-                android:elevation="2dp"
+                android:background="@color/white"
+                android:elevation="6dp"
                 android:gravity="center"
-                android:padding="16dp"
+                android:padding="20dp"
                 android:clickable="true"
                 android:focusable="true"
-                >
+                android:foreground="?android:attr/selectableItemBackground">
 
                 <ImageView
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
                     android:src="@drawable/ic_gallery"
                     android:background="@drawable/circle_green_background"
-                    android:padding="12dp"
-                    android:tint="@android:color/white" />
+                    android:padding="14dp"
+                    android:tint="@color/white"
+                    android:elevation="2dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="12dp"
                     android:text="Upload an image from your gallery"
-                    android:textSize="12sp"
-                    android:textColor="#666666"
+                    android:textSize="13sp"
+                    android:textColor="@color/text_secondary"
                     android:gravity="center"
+                    android:lineSpacingExtra="1dp"
                     android:maxLines="2" />
 
             </LinearLayout>
 
         </LinearLayout>
 
-        <!-- Download Section -->
+        <!-- Check Description and Diagnosis Card -->
         <LinearLayout
+            android:id="@+id/cardCheckDiagnosis"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@android:color/white"
-            android:padding="16dp"
-            android:elevation="2dp"
-            android:layout_marginBottom="16dp">
+            android:orientation="horizontal"
+            android:background="@color/white"
+            android:padding="20dp"
+            android:layout_marginBottom="24dp"
+            android:elevation="6dp"
+            android:layout_marginHorizontal="4dp"
+            android:gravity="center_vertical"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground">
 
-            <!-- Download Header -->
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_description"
+                android:background="@drawable/circle_green_background"
+                android:padding="12dp"
+                android:tint="@color/white"
+                android:elevation="2dp" />
+
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:layout_marginBottom="12dp">
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_download"
-                    android:tint="@color/primary_green" />
+                android:layout_weight="1"
+                android:layout_marginStart="16dp"
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:text="Click on save pdf to download the diagnosis result pdf"
-                    android:textSize="14sp"
-                    android:textColor="#333333"
+                    android:text="Check Description and Diagnosis"
+                    android:textSize="16sp"
+                    android:textColor="@color/text_dark_green"
                     android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="View detailed analysis results and treatment recommendations"
+                    android:textSize="13sp"
+                    android:textColor="@color/text_secondary"
+                    android:lineSpacingExtra="1dp" />
 
             </LinearLayout>
 
-            <!-- Sample Image -->
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:src="@drawable/save_pdf" />
+        </LinearLayout>
 
+        <!-- Enhanced Download Section -->
+        <LinearLayout
+            android:id="@+id/cardDownloadPdf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@color/white"
+            android:padding="20dp"
+            android:elevation="4dp"
+            android:layout_marginHorizontal="4dp"
+            android:gravity="center_vertical"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground">
+
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_download"
+                android:background="@drawable/circle_green_background"
+                android:padding="12dp"
+                android:tint="@color/white"
+                android:elevation="2dp" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="16dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Save PDF Report"
+                    android:textSize="16sp"
+                    android:textColor="@color/text_dark_green"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Download complete diagnosis report as PDF"
+                    android:textSize="13sp"
+                    android:textColor="@color/text_secondary"
+                    android:lineSpacingExtra="1dp" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
