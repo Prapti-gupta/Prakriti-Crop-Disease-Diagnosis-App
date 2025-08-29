@@ -88,9 +88,6 @@
         android:elevation="2dp" />
   </LinearLayout>
 
-
-
-
   <!-- Progress Bar -->
   <ProgressBar
       android:id="@+id/progressBar"
@@ -111,18 +108,19 @@
       android:gravity="center"
       android:layout_marginBottom="24dp" />
 
-  <!-- Done Button -->
+  <!-- Done Button (Hidden initially, will be shown after prediction) -->
   <Button
       android:id="@+id/btnDone"
       android:layout_width="match_parent"
       android:layout_height="56dp"
-      android:text="Done"
+      android:text="Analyze Image"
       android:textAllCaps="false"
       android:textColor="#ffffff"
       android:textSize="18sp"
       android:textStyle="bold"
       android:background="@color/primary_green"
       android:elevation="4dp"
-      android:enabled="false" />
+      android:enabled="false"
+      android:visibility="gone" />
 
 </LinearLayout>

@@ -1,0 +1,55 @@
+Crop	Condition/Disease	Description	Treatment/Care_Tips
+Apple	Apple___Apple_scab	Fungal disease causing scabby lesions on leaves and fruits.	Use resistant varieties, prune trees, apply fungicides.
+Apple	Apple___Black_rot	Fungal disease causing fruit rot and leaf spots.	Remove infected parts, apply fungicides, proper sanitation.
+Apple	Apple___Cedar_apple_rust	Fungal disease causing bright orange spots on leaves.	Remove nearby junipers, apply fungicides, resistant varieties.
+Apple	Healthy	Tree without visible disease.	Prune regularly, fertilize, ensure proper irrigation. apple_leaf
+Cherry	Healthy	Tree growing without disease.	Water well, mulch, prune for airflow. cherry_leaf
+Cherry	Cherry___Powdery_mildew	Fungal disease causing white powder on leaves.	Apply sulfur fungicides, prune infected leaves, ensure airflow.
+Coffee	Healthy	Plant with no disease symptoms.	Provide shade, irrigate properly, prune for airflow. coffee_leaf
+Coffee	Miner	Leaf miner insect creating tunnels in leaves.	Use neem oil, remove affected leaves, biological control.
+Coffee	Rust	Fungal disease causing orange powdery spots on leaves.	Use resistant varieties, copper-based fungicides, prune trees.
+Corn	Corn___Cercospora_leaf_spot Gray_leaf_spot	Fungal disease causing gray rectangular lesions.	Rotate crops, apply fungicides, resistant varieties.
+Corn	Corn___Common_rust	Fungal disease producing reddish-brown pustules.	Use resistant hybrids, fungicide sprays, rotate crops.
+Corn	Healthy	Corn plants without visible damage.	Balanced fertilization, irrigation, weed control. corn_leaf
+Corn	Corn___Northern_Leaf_Blight	Fungal disease causing cigar-shaped lesions.	Resistant hybrids, fungicide sprays, crop rotation.
+Cotton	Bacterial_blight	Bacterial disease with angular leaf spots.	Use resistant seeds, avoid overhead irrigation, crop rotation.
+Cotton	Aphids	Small insects sucking sap from plants.	Introduce ladybugs, neem oil spray, insecticidal soap.
+Cotton	Army_worm	Caterpillars feeding on leaves.	Handpick larvae, apply BT sprays, pheromone traps.
+Cotton	Healthy	Plant without disease.	Use certified seeds, timely irrigation, balanced fertilization. cotton_leaf
+Cotton	Powdery_mildew	White powdery growth on leaves.	Apply sulfur fungicides, remove infected leaves.
+Cotton	Target_spot	Fungal disease causing concentric ring spots.	Crop rotation, fungicides, field sanitation.
+Grape	Grape___Black_rot	Fungal disease causing shriveled black berries.	Remove infected fruit, fungicide application, prune vines.
+Grape	Grape___Esca_(Black_Measles)	Trunk disease causing leaf striping and berry shriveling.	Remove infected vines, avoid stress, fungicide sprays.
+Grape	Healthy	Vines growing without disease.	Prune annually, maintain airflow, regular irrigation. grapes_leaf
+Grape	Grape___Leaf_blight_(Isariopsis_Leaf_Spot)	Fungal disease causing necrotic leaf spots.	Remove infected leaves, apply fungicides, crop rotation.
+Jute	Cescospora_leaf_spot	Leaf spot disease with brown circular lesions.	Remove infected leaves, fungicide spray, crop rotation.
+Jute	Golden_mosaic	Viral disease causing yellow mosaic on leaves.	Use resistant varieties, control whiteflies, remove infected plants.
+Jute	Healthy	Healthy jute plant with no disease.	Adequate irrigation, weed management, fertilizer application. jute_leaf
+Orange	Haunglongbing_(Citrus_greening)	Serious bacterial disease causing yellow shoots and bitter fruits.	Remove infected trees, control psyllid vector, resistant rootstocks.
+Pepper_bell	Pepper,_bell___Bacterial_spot	Bacterial disease causing dark water-soaked spots.	Use copper sprays, resistant seeds, crop rotation.
+Pepper_bell	Healthy	Healthy pepper plants.	Drip irrigation, fertilizer balance, pest monitoring.
+Potato	Potato___Early_blight	Fungal disease causing concentric brown leaf spots.	Remove infected leaves, fungicide sprays, rotate crops.
+Potato	Healthy	Potato plants without disease.	Proper irrigation, resistant varieties, balanced fertilization.	 potato_leaf
+Potato	Potato___Late_blight	Severe fungal disease causing blackened leaves and tubers.	Fungicide sprays, resistant varieties, remove infected plants.
+Rice	Brown_Spot	Fungal disease causing brown leaf lesions.	Balanced fertilization, fungicide sprays, resistant varieties.
+Rice	Healthy	Rice growing without disease.	Timely irrigation, weed control, proper spacing. rice_leaf
+Rice	Leaf_Blast	Fungal disease causing spindle-shaped lesions.	Resistant varieties, fungicide sprays, avoid excess nitrogen.
+Rice	Neck_Blast	Severe blast disease at panicle base.	Resistant varieties, fungicides, field sanitation.
+Strawberry	Healthy	Healthy strawberry plants.	Mulching, irrigation management, remove old leaves. strawberry_leaf
+Strawberry	Strawberry___Leaf_scorch	Fungal disease causing burnt-looking leaves.	Remove infected leaves, fungicide sprays, crop rotation.
+Sugarcane	Bacterial_Blight	Bacterial disease causing leaf streaks.	Use healthy setts, resistant varieties, crop rotation.
+Sugarcane	Healthy	Healthy sugarcane plants.	Irrigation scheduling, weed management, soil fertility improvement. sugarcane_leaf
+Sugarcane	Red_Rot	Fungal disease causing red discoloration inside stalks.	Resistant varieties, remove infected clumps, crop rotation.
+Tomato	Tomato___Bacterial_spot	Bacterial disease with small water-soaked lesions.	Copper sprays, crop rotation, resistant seeds.
+Tomato	Tomato___Early_blight	Fungal disease causing concentric brown spots.	Remove infected leaves, fungicides, crop rotation.
+Tomato	Healthy	Tomato plant without disease.	Proper staking, irrigation, pest monitoring.
+Tomato	Tomato___Late_blight	Deadly fungal disease causing leaf and fruit rot.	Fungicide sprays, resistant varieties, remove infected plants.
+Tomato	Tomato___Leaf_Mold	Fungal disease causing yellow patches and mold under leaves.	Improve airflow, resistant varieties, fungicide sprays.
+Tomato	Tomato___Septoria_leaf_spot	Fungal disease causing small circular leaf spots.	Remove infected leaves, fungicide sprays, crop rotation.
+Tomato	Tomato___Spider_mites Two-spotted_spider_mite	Insect pests causing stippling and webbing.	Neem oil, miticides, encourage predatory mites.
+Tomato	Tomato___Target_Spot	Fungal disease causing concentric spots on leaves.	Fungicide sprays, crop rotation, remove infected debris.
+Tomato	Tomato___Tomato_Yellow_Leaf_Curl_Virus	Viral disease causing yellow curled leaves.	Use resistant varieties, control whiteflies, remove infected plants.
+Tomato	Tomato___Tomato_mosaic_virus	Viral disease causing mottled, distorted leaves.	Use virus-free seeds, disinfect tools, resistant varieties.
+Wheat	Brown_Rust	Fungal disease with brown pustules on leaves.	Resistant varieties, fungicide sprays, crop rotation.
+Wheat	Healthy	Wheat growing without disease.	Balanced fertilizer, irrigation, pest monitoring. wheat_leaf
+Wheat	Yellow_Rust	Fungal disease producing yellow stripe-like pustules.	Resistant varieties, fungicide sprays, crop monitoring.

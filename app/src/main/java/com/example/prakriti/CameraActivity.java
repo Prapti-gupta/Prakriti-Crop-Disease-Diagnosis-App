@@ -3,6 +3,7 @@ package com.example.prakriti;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -23,12 +24,21 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
+import org.pytorch.IValue;
+import org.pytorch.Module;
+import org.pytorch.Tensor;
+import org.pytorch.torchvision.TensorImageUtils;
+
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 public class CameraActivity extends AppCompatActivity {
@@ -39,29 +49,37 @@ public class CameraActivity extends AppCompatActivity {
     private static final int REQUEST_IMAGE_UPLOAD = 103;
 
     private ImageView imagePreview;
-    private TextView placeholderText;
-    private TextView statusText;
-    private Button btnCamera;
-    private Button btnUpload;
-    private Button btnDone;
+    private TextView placeholderText, statusText;
+    private Button btnCamera, btnUpload, btnDone;
     private ProgressBar progressBar;
 
     private String currentPhotoPath;
     private File photoFile;
     private boolean hasImage = false;
 
+    private Module module;
+    private final int INPUT_SIZE = 224;
+    private List<String> classNames;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_camera);
+        setContentView(R.layout.activity_camera); // Make sure this matches your XML file
 
         initializeViews();
         setupClickListeners();
 
-        // Always enable buttons
-        btnCamera.setEnabled(true);
-        btnUpload.setEnabled(true);
-        btnDone.setEnabled(true);
+        // Load model and class names
+        try {
+            module = Module.load(assetFilePath("quantized_edgevit_dynamic_final.pt"));
+            classNames = loadClassNames("classes.txt");
+            statusText.setText("Model loaded successfully ✅");
+        } catch (Exception e) {
+            statusText.setText("Failed to load model ❌");
+            e.printStackTrace();
+        }
     }
 
     private void initializeViews() {
@@ -72,42 +90,36 @@ public class CameraActivity extends AppCompatActivity {
         btnUpload = findViewById(R.id.btnUpload);
         btnDone = findViewById(R.id.btnDone);
         progressBar = findViewById(R.id.progressBar);
+
+        // Safety check for nulls
+        if (btnCamera == null || btnUpload == null || btnDone == null) {
+            Toast.makeText(this, "Button IDs do not match XML!", Toast.LENGTH_LONG).show();
+        }
     }
 
     private void setupClickListeners() {
         btnCamera.setOnClickListener(v -> {
-            if (checkCameraPermission()) {
-                openCamera();
-            } else {
-                requestCameraPermission();
-            }
+            if (checkCameraPermission()) openCamera();
+            else requestCameraPermission();
         });
 
         btnUpload.setOnClickListener(v -> {
-            if (checkStoragePermission()) {
-                openGallery();
-            } else {
-                requestStoragePermission();
-            }
+            if (checkStoragePermission()) openGallery();
+            else requestStoragePermission();
         });
 
         btnDone.setOnClickListener(v -> {
-            if (hasImage) {
-                navigateToCameraDescriptionPage();
-            } else {
-                Toast.makeText(this, "Please capture or upload a photo first", Toast.LENGTH_SHORT).show();
-            }
+            if (hasImage) runModelOnImage(currentPhotoPath);
+            else Toast.makeText(this, "Please capture or upload a photo first", Toast.LENGTH_SHORT).show();
         });
     }
 
     private boolean checkStoragePermission() {
-        // For Android 13+ (Tiramisu), check READ_MEDIA_IMAGES instead
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
             return ContextCompat.checkSelfPermission(this, Manifest.permission.READ_MEDIA_IMAGES)
                     == PackageManager.PERMISSION_GRANTED;
-        } else {
-            return true; // No permission needed from Android 10+
         }
+        return true;
     }
 
     private void requestStoragePermission() {
@@ -115,10 +127,7 @@ public class CameraActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(this,
                     new String[]{Manifest.permission.READ_MEDIA_IMAGES},
                     REQUEST_STORAGE_PERMISSION);
-        } else {
-            // No need to request for Android 10 and above
-            openGallery();
-        }
+        } else openGallery();
     }
 
     private boolean checkCameraPermission() {
@@ -126,38 +135,28 @@ public class CameraActivity extends AppCompatActivity {
                 == PackageManager.PERMISSION_GRANTED;
     }
 
-
-
     private void requestCameraPermission() {
         ActivityCompat.requestPermissions(this,
                 new String[]{Manifest.permission.CAMERA},
                 REQUEST_CAMERA_PERMISSION);
     }
 
-
-
     private void openCamera() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-            photoFile = null;
             try {
                 photoFile = createImageFile();
             } catch (IOException ex) {
                 Toast.makeText(this, "Error creating image file", Toast.LENGTH_SHORT).show();
                 return;
             }
-
             if (photoFile != null) {
                 Uri photoURI = FileProvider.getUriForFile(this,
-                        "com.yourapp.camera.fileprovider", photoFile);
+                        "com.example.prakriti.fileprovider", photoFile); // Correct authority
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                 startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
-
                 showProgress("Opening camera...");
             }
-        } else {
-            Toast.makeText(this, "No camera app available", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -165,15 +164,13 @@ public class CameraActivity extends AppCompatActivity {
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         intent.setType("image/*");
         startActivityForResult(intent, REQUEST_IMAGE_UPLOAD);
-
         showProgress("Opening gallery...");
     }
 
     private File createImageFile() throws IOException {
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
-        String imageFileName = "JPEG_" + timeStamp + "_";
         File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-        File image = File.createTempFile(imageFileName, ".jpg", storageDir);
+        File image = File.createTempFile("JPEG_" + timeStamp + "_", ".jpg", storageDir);
         currentPhotoPath = image.getAbsolutePath();
         return image;
     }
@@ -182,97 +179,165 @@ public class CameraActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         hideProgress();
-
         if (resultCode == Activity.RESULT_OK) {
-            switch (requestCode) {
-                case REQUEST_IMAGE_CAPTURE:
-                    handleCameraResult();
-                    break;
-                case REQUEST_IMAGE_UPLOAD:
-                    handleGalleryResult(data);
-                    break;
-            }
-        } else {
-            statusText.setText("Action cancelled");
-        }
+            if (requestCode == REQUEST_IMAGE_CAPTURE) handleCameraResult();
+            else if (requestCode == REQUEST_IMAGE_UPLOAD) handleGalleryResult(data);
+        } else statusText.setText("Action cancelled");
     }
 
     private void handleCameraResult() {
         if (photoFile != null && photoFile.exists()) {
-            showProgress("Processing image...");
             Bitmap bitmap = BitmapFactory.decodeFile(currentPhotoPath);
             if (bitmap != null) {
-                bitmap = scaleBitmapToFit(bitmap);
+                bitmap = Bitmap.createScaledBitmap(bitmap, INPUT_SIZE, INPUT_SIZE, true);
                 imagePreview.setImageBitmap(bitmap);
                 placeholderText.setVisibility(View.GONE);
                 hasImage = true;
+                btnDone.setVisibility(View.VISIBLE);
+                btnDone.setEnabled(true);
                 statusText.setText("Photo captured successfully");
-            } else {
-                statusText.setText("Failed to load captured image");
-            }
-            hideProgress();
-        } else {
-            statusText.setText("Failed to capture image");
-        }
+            } else statusText.setText("Failed to load captured image");
+        } else statusText.setText("Failed to capture image");
     }
 
     private void handleGalleryResult(Intent data) {
         if (data != null && data.getData() != null) {
             Uri selectedImageUri = data.getData();
-            showProgress("Loading image...");
-
             try {
                 photoFile = createImageFile();
-                copyUriToFile(selectedImageUri, photoFile);
-                currentPhotoPath = photoFile.getAbsolutePath();
+                InputStream inputStream = getContentResolver().openInputStream(selectedImageUri);
+                FileOutputStream outputStream = new FileOutputStream(photoFile);
+                byte[] buffer = new byte[1024];
+                int bytesRead;
+                while ((bytesRead = inputStream.read(buffer)) != -1)
+                    outputStream.write(buffer, 0, bytesRead);
+                inputStream.close();
+                outputStream.close();
 
+                currentPhotoPath = photoFile.getAbsolutePath();
                 Bitmap bitmap = BitmapFactory.decodeFile(currentPhotoPath);
                 if (bitmap != null) {
-                    bitmap = scaleBitmapToFit(bitmap);
+                    bitmap = Bitmap.createScaledBitmap(bitmap, INPUT_SIZE, INPUT_SIZE, true);
                     imagePreview.setImageBitmap(bitmap);
                     placeholderText.setVisibility(View.GONE);
                     hasImage = true;
+                    btnDone.setVisibility(View.VISIBLE);
+                    btnDone.setEnabled(true);
                     statusText.setText("Photo uploaded successfully");
-                } else {
-                    statusText.setText("Failed to load uploaded image");
-                }
+                } else statusText.setText("Failed to load uploaded image");
             } catch (IOException e) {
                 statusText.setText("Failed to process uploaded image");
                 e.printStackTrace();
             }
-            hideProgress();
+        }
+    }
+    private void showPredictionDialog(String predictedClass, float score) {
+        // Inflate custom layout
+        View dialogView = getLayoutInflater().inflate(R.layout.dialog_prediction_result, null);
+
+        TextView tvPredictedCrop = dialogView.findViewById(R.id.tvPredictedCrop);
+        TextView tvConfidence = dialogView.findViewById(R.id.tvConfidence);
+        ProgressBar progressBarConfidence = dialogView.findViewById(R.id.progressBarConfidence);
+        Button btnYes = dialogView.findViewById(R.id.btnYes);
+        Button btnNo = dialogView.findViewById(R.id.btnNo);
+
+        // Set values
+        tvPredictedCrop.setText(predictedClass);
+        tvConfidence.setText(String.format(Locale.getDefault(), "Confidence: %.2f%%", score * 100));
+        progressBarConfidence.setProgress((int)(score * 100));
+
+        // Build dialog
+        final androidx.appcompat.app.AlertDialog dialog = new androidx.appcompat.app.AlertDialog.Builder(this)
+                .setView(dialogView)
+                .setCancelable(false)
+                .create();
+
+        btnYes.setOnClickListener(v -> {
+            // Go to CameraDescription page
+            // Increment crop count
+            SharedPreferences prefs = getSharedPreferences("PrakritiData", MODE_PRIVATE);
+            int count = prefs.getInt("cropCount", 0);
+            prefs.edit()
+                    .putInt("cropCount", count + 1)
+                    .putLong("lastDiagnosisTime", System.currentTimeMillis())
+                    .apply();
+            Intent intent = new Intent(CameraActivity.this, CameraDescription.class);
+            intent.putExtra("prediction", predictedClass);       // send predicted class
+            intent.putExtra("photo_path", currentPhotoPath);     // send image path
+            startActivity(intent);
+            dialog.dismiss();
+            finish(); // optional
+        });
+
+
+
+
+        btnNo.setOnClickListener(v -> {
+            // Just dismiss and allow user to try again
+            dialog.dismiss();
+            Toast.makeText(CameraActivity.this, "You can capture/upload another image.", Toast.LENGTH_SHORT).show();
+        });
+
+        dialog.show();
+    }
+
+
+    private void runModelOnImage(String imagePath) {
+        try {
+            Bitmap bitmap = BitmapFactory.decodeFile(imagePath);
+            bitmap = Bitmap.createScaledBitmap(bitmap, INPUT_SIZE, INPUT_SIZE, true);
+
+            Tensor inputTensor = TensorImageUtils.bitmapToFloat32Tensor(bitmap,
+                    TensorImageUtils.TORCHVISION_NORM_MEAN_RGB,
+                    TensorImageUtils.TORCHVISION_NORM_STD_RGB);
+
+            IValue output = module.forward(IValue.from(inputTensor));
+            float[] scores = output.toTensor().getDataAsFloatArray();
+
+            int maxIndex = 0;
+            float maxScore = -Float.MAX_VALUE;
+            for (int i = 0; i < scores.length; i++) {
+                if (scores[i] > maxScore) {
+                    maxScore = scores[i];
+                    maxIndex = i;
+                }
+            }
+
+            String predictedClass = (classNames != null && maxIndex < classNames.size()) ?
+                    classNames.get(maxIndex) : "Class " + maxIndex;
+
+            // Show dialog for user confirmation
+            showPredictionDialog(predictedClass, maxScore);
+
+        } catch (Exception e) {
+            statusText.setText("Model inference failed ❌");
+            e.printStackTrace();
         }
     }
 
-    private void copyUriToFile(Uri uri, File file) throws IOException {
-        InputStream inputStream = getContentResolver().openInputStream(uri);
-        FileOutputStream outputStream = new FileOutputStream(file);
-        byte[] buffer = new byte[1024];
-        int bytesRead;
-        while ((bytesRead = inputStream.read(buffer)) != -1) {
-            outputStream.write(buffer, 0, bytesRead);
+    private List<String> loadClassNames(String fileName) {
+        List<String> classes = new ArrayList<>();
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(getAssets().open(fileName)))) {
+            String line;
+            while ((line = reader.readLine()) != null) classes.add(line);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        inputStream.close();
-        outputStream.close();
+        return classes;
     }
 
-    private Bitmap scaleBitmapToFit(Bitmap bitmap) {
-        int maxWidth = 800;
-        int maxHeight = 600;
+    private String assetFilePath(String assetName) throws IOException {
+        File file = new File(getFilesDir(), assetName);
+        if (file.exists() && file.length() > 0) return file.getAbsolutePath();
 
-        int width = bitmap.getWidth();
-        int height = bitmap.getHeight();
-
-        float scaleWidth = (float) maxWidth / width;
-        float scaleHeight = (float) maxHeight / height;
-        float scale = Math.min(scaleWidth, scaleHeight);
-
-        if (scale < 1.0f) {
-            int newWidth = Math.round(width * scale);
-            int newHeight = Math.round(height * scale);
-            return Bitmap.createScaledBitmap(bitmap, newWidth, newHeight, true);
+        try (InputStream is = getAssets().open(assetName);
+             FileOutputStream os = new FileOutputStream(file)) {
+            byte[] buffer = new byte[4 * 1024];
+            int read;
+            while ((read = is.read(buffer)) != -1) os.write(buffer, 0, read);
+            os.flush();
         }
-        return bitmap;
+        return file.getAbsolutePath();
     }
 
     private void showProgress(String message) {
@@ -284,43 +349,13 @@ public class CameraActivity extends AppCompatActivity {
         progressBar.setVisibility(View.GONE);
     }
 
-    private void navigateToCameraDescriptionPage() {
-        Intent intent = new Intent(this, CameraDescription.class);
-        if (currentPhotoPath != null) {
-            intent.putExtra("photo_path", currentPhotoPath);
-        }
-        startActivity(intent);
-    }
-
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
-        switch (requestCode) {
-            case REQUEST_CAMERA_PERMISSION:
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    openCamera();
-                } else {
-                    Toast.makeText(this, "Camera permission required to take photos",
-                            Toast.LENGTH_SHORT).show();
-                }
-                break;
-
-            case REQUEST_STORAGE_PERMISSION:
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    openGallery();
-                } else {
-                    Toast.makeText(this, "Storage permission required to upload photos",
-                            Toast.LENGTH_SHORT).show();
-                }
-                break;
-        }
-    }
-
-    public String getCurrentPhotoPath() {
-        return currentPhotoPath;
+        if (requestCode == REQUEST_CAMERA_PERMISSION && grantResults.length > 0
+                && grantResults[0] == PackageManager.PERMISSION_GRANTED) openCamera();
+        else if (requestCode == REQUEST_STORAGE_PERMISSION && grantResults.length > 0
+                && grantResults[0] == PackageManager.PERMISSION_GRANTED) openGallery();
     }
 }
-
-

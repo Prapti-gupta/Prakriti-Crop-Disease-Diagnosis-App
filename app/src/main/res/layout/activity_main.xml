@@ -101,7 +101,7 @@
                     android:layout_height="56dp"
                     android:hint="Enter your Gender"
                     android:textSize="16sp"
-                    android:textColor="@color/text_primary"
+                    android:textColor="@color/black"
                     android:textColorHint="@color/text_hint"
                     android:inputType="none"
                     android:focusable="false"

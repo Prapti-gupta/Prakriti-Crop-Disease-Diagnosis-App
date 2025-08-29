@@ -23,6 +23,7 @@
 <color name="black">#000000</color>
 <color name="white">#FFFFFF</color>
 <color name="creme">#F4F1E1</color>
+    <color name="darkgrey">#989898</color>
 
 <!-- Navigation Colors -->
 <color name="nav_icon_color">#E8F5E8</color>

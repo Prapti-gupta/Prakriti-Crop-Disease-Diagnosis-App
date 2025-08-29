@@ -55,6 +55,7 @@
                             android:layout_marginTop="4dp">
 
                             <TextView
+                                android:id="@+id/username"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Kisan Ji"
@@ -73,8 +74,10 @@
 
                     <!-- Profile Image -->
                     <ImageView
+                        android:id="@+id/profile_picture"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
+                        android:clickable="true"
                         android:src="@drawable/profile_placeholder"/>
 
                 </LinearLayout>
@@ -104,6 +107,7 @@
                             android:gravity="center">
 
                             <TextView
+                                android:id="@+id/tv_crop_count"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="5"
@@ -142,6 +146,7 @@
                             android:gravity="center">
 
                             <TextView
+                                android:id="@+id/tv_last_diagnosis"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Aug 1"
@@ -229,7 +234,7 @@
                         <!-- Product 1 -->
                         <androidx.cardview.widget.CardView
                             android:layout_width="100dp"
-                            android:layout_height="80dp"
+                            android:layout_height="100dp"
                             android:layout_marginEnd="12dp"
                             app:cardCornerRadius="8dp"
                             app:cardElevation="2dp"
@@ -240,22 +245,23 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:gravity="center"
-                                android:background="@drawable/indicator_inactive">
+                                android:background="@drawable/green_border"> <!-- apply green border here -->
 
                                 <ImageView
-                                    android:layout_width="80dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="80dp"
-                                    android:src="@drawable/fertilizer"
-                                     />
-
+                                    android:src="@drawable/product1"
+                                    android:scaleType="fitCenter"
+                                    android:adjustViewBounds="true"/>
                             </LinearLayout>
 
                         </androidx.cardview.widget.CardView>
+
 
                         <!-- Product 2 -->
                         <androidx.cardview.widget.CardView
                             android:layout_width="100dp"
-                            android:layout_height="80dp"
+                            android:layout_height="100dp"
                             android:layout_marginEnd="12dp"
                             app:cardCornerRadius="8dp"
                             app:cardElevation="2dp"
@@ -266,22 +272,21 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:gravity="center"
-                                android:background="@color/indicator_inactive">
+                                android:background="@drawable/green_border"> <!-- apply green border here -->
 
                                 <ImageView
-                                    android:layout_width="80dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="80dp"
-                                    android:src="@drawable/fertilizer"
-                                     />
-
+                                    android:src="@drawable/product2"
+                                    android:scaleType="fitCenter"
+                                    android:adjustViewBounds="true"/>
                             </LinearLayout>
 
                         </androidx.cardview.widget.CardView>
-
                         <!-- Product 3 -->
                         <androidx.cardview.widget.CardView
                             android:layout_width="100dp"
-                            android:layout_height="80dp"
+                            android:layout_height="100dp"
                             android:layout_marginEnd="12dp"
                             app:cardCornerRadius="8dp"
                             app:cardElevation="2dp"
@@ -292,14 +297,14 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:gravity="center"
-                                android:background="@color/indicator_inactive">
+                                android:background="@drawable/green_border"> <!-- apply green border here -->
 
                                 <ImageView
-                                    android:layout_width="80dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="80dp"
-                                    android:src="@drawable/fertilizer"
-                                     />
-
+                                    android:src="@drawable/product3"
+                                    android:scaleType="fitCenter"
+                                    android:adjustViewBounds="true"/>
                             </LinearLayout>
 
                         </androidx.cardview.widget.CardView>
@@ -307,7 +312,7 @@
                         <!-- Product 4 -->
                         <androidx.cardview.widget.CardView
                             android:layout_width="100dp"
-                            android:layout_height="80dp"
+                            android:layout_height="100dp"
                             android:layout_marginEnd="12dp"
                             app:cardCornerRadius="8dp"
                             app:cardElevation="2dp"
@@ -318,22 +323,23 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:gravity="center"
-                                android:background="@color/indicator_inactive">
+                                android:background="@drawable/green_border"> <!-- apply green border here -->
 
                                 <ImageView
-                                    android:layout_width="80dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="80dp"
-                                    android:src="@drawable/fertilizer"
-                                     />
-
+                                    android:src="@drawable/product4"
+                                    android:scaleType="fitCenter"
+                                    android:adjustViewBounds="true"/>
                             </LinearLayout>
 
                         </androidx.cardview.widget.CardView>
+
 
                         <!-- Product 5 -->
                         <androidx.cardview.widget.CardView
                             android:layout_width="100dp"
-                            android:layout_height="80dp"
+                            android:layout_height="100dp"
                             android:layout_marginEnd="12dp"
                             app:cardCornerRadius="8dp"
                             app:cardElevation="2dp"
@@ -344,22 +350,23 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:gravity="center"
-                                android:background="@color/indicator_inactive">
+                                android:background="@drawable/green_border"> <!-- apply green border here -->
 
                                 <ImageView
-                                    android:layout_width="80dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="80dp"
-                                    android:src="@drawable/fertilizer"
-                                     />
-
+                                    android:src="@drawable/product5"
+                                    android:scaleType="fitCenter"
+                                    android:adjustViewBounds="true"/>
                             </LinearLayout>
 
                         </androidx.cardview.widget.CardView>
 
+
                         <!-- Product 6 -->
                         <androidx.cardview.widget.CardView
                             android:layout_width="100dp"
-                            android:layout_height="80dp"
+                            android:layout_height="100dp"
                             android:layout_marginEnd="12dp"
                             app:cardCornerRadius="8dp"
                             app:cardElevation="2dp"
@@ -370,14 +377,14 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:gravity="center"
-                                android:background="@color/indicator_inactive">
+                                android:background="@drawable/green_border"> <!-- apply green border here -->
 
                                 <ImageView
-                                    android:layout_width="80dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="80dp"
-                                    android:src="@drawable/fertilizer"
-                                     />
-
+                                    android:src="@drawable/product6"
+                                    android:scaleType="fitCenter"
+                                    android:adjustViewBounds="true"/>
                             </LinearLayout>
 
                         </androidx.cardview.widget.CardView>

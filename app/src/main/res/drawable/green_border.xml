@@ -1,0 +1,11 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <!-- White background -->
+    <solid android:color="@android:color/white" />
+    <!-- Green border -->
+    <stroke
+        android:width="3dp"
+        android:color="@color/primary_green_dark" />
+    <!-- Rounded corners (same as cardCornerRadius) -->
+    <corners android:radius="8dp" />
+</shape>
