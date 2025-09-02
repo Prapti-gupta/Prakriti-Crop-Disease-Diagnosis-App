@@ -39,12 +39,23 @@ public class ProfileScreen extends AppCompatActivity {
         LinearLayout contact_trainer = findViewById(R.id.btnContactUs);
         LinearLayout edit_profile = findViewById(R.id.btnEditProfile);
         LinearLayout help = findViewById(R.id.btnHelpFaq);
+        LinearLayout notification = findViewById(R.id.btnNotifications);
         LinearLayout about = findViewById(R.id.btnAboutApp);
+        LinearLayout logout = findViewById(R.id.btnLogout);
 
         // Load and display user profile (if you have TextViews in your layout)
         loadUserProfile();
 
         // Set click listeners
+
+        notification.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProfileScreen.this, Instruction5.class);
+                startActivity(intent);
+            }
+        });
+
         contact_trainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,6 +84,20 @@ public class ProfileScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ProfileScreen.this, AboutActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                SharedPreferences sharedPreferences = getSharedPreferences("PrakritiLogin", MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putBoolean("isUserRegistered", false);
+                editor.apply();
+
+                Intent intent = new Intent(ProfileScreen.this, MainActivity.class);
                 startActivity(intent);
             }
         });

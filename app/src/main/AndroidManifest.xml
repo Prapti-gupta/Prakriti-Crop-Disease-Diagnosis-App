@@ -4,18 +4,19 @@
 
     <!-- Permissions -->
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission
-        android:name="android.permission.READ_EXTERNAL_STORAGE"
-        android:maxSdkVersion="32" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:maxSdkVersion="32" />
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
-    <uses-permission
-        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
-        android:maxSdkVersion="28" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="28" />
 
     <!-- Optional: specify device has a camera but not mandatory -->
-    <uses-feature
-        android:name="android.hardware.camera"
-        android:required="false" />
+    <uses-feature android:name="android.hardware.camera" android:required="false" />
+
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" /> <!-- ✅ Required if you want exact alarms (like reminders) -->
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" /> <!-- ✅ Keeps CPU awake while handling alarms -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" /> <!-- ✅ If you want alarms to survive reboot (optional) -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+
 
     <application
         android:allowBackup="true"
@@ -50,7 +51,6 @@
         </activity>
 
         <activity android:name=".MainActivity" android:exported="true" />
-        <activity android:name=".MainActivity2" android:exported="false" />
         <activity android:name=".HomeScreen" android:exported="false" />
         <activity android:name=".AboutActivity" android:exported="false" />
         <activity android:name=".HelpActivity" android:exported="false" />
@@ -61,10 +61,7 @@
         <activity android:name=".CropsDescription" android:exported="false" />
         <activity android:name=".CameraDescription" android:exported="false" />
         <activity android:name=".CameraActivity" android:exported="false" />
-        <activity
-            android:name=".NPKCalculator"
-            android:exported="false"
-            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity android:name=".NPKCalculator" android:exported="false" android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity android:name=".ProfileScreen" android:exported="false" />
         <activity android:name=".Instruction1" android:exported="false" />
         <activity android:name=".Instruction2" android:exported="false" />
@@ -72,6 +69,11 @@
         <activity android:name=".Instruction4" android:exported="false" />
         <activity android:name=".Instruction5" android:exported="false" />
         <activity android:name=".OfflineInstruction" android:exported="false" />
+
+        <receiver
+            android:name=".Receiver"
+            android:exported="true" />
     </application>
+
 
 </manifest>

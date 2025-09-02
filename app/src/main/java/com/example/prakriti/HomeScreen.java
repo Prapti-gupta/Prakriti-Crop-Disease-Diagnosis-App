@@ -2,6 +2,7 @@ package com.example.prakriti;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,7 +13,13 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+
 public class HomeScreen extends AppCompatActivity {
+
+    private TextView tip;
+    private UserDatabaseHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +33,11 @@ public class HomeScreen extends AppCompatActivity {
         ImageButton btnCamera = findViewById(R.id.btn_camera);
         Button app_instructions = findViewById(R.id.app_instructions);
         ImageView profilePicture = findViewById(R.id.profile_picture);
+        tip = findViewById(R.id.tips);
+
+        dbHelper = new UserDatabaseHelper(this);
+
+        showDailyTip();
 
 
         // Set profile picture based on gender from SharedPreferences
@@ -123,6 +135,32 @@ public class HomeScreen extends AppCompatActivity {
             tvLastDate.setText("" + formatted);
         } else {
             tvLastDate.setText("No diagnosis yet");
+        }
+    }
+
+
+    private void showDailyTip() {
+        Cursor cursor = dbHelper.getAllTips();
+        ArrayList<String> tips = new ArrayList<>();
+
+        if (cursor.moveToFirst()) {
+            do {
+                tips.add(cursor.getString(cursor.getColumnIndexOrThrow("tip")));
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+
+        if (!tips.isEmpty()) {
+            // Get current day of year
+            int dayOfYear = Calendar.getInstance().get(Calendar.DAY_OF_YEAR);
+
+            // Pick tip for today
+            int tipIndex = dayOfYear % tips.size();
+            String todayTip = tips.get(tipIndex);
+
+            tip.setText(todayTip);
+        } else {
+            tip.setText("No tips available today.");
         }
     }
 

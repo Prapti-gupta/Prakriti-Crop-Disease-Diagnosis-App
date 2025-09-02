@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <paths xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Existing path for camera images -->
     <external-files-path name="my_images" path="Pictures" />
+
+    <!-- Add these paths for PDF functionality -->
+    <external-files-path name="pdf_files" path="Documents" />
+    <external-files-path name="external_app_files" path="." />
+    <external-path name="external_storage" path="." />
+    <files-path name="internal_files" path="." />
 </paths>

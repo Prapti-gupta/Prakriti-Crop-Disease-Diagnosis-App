@@ -53,4 +53,7 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+
+    implementation("androidx.core:core:1.10.1")
+    implementation("androidx.appcompat:appcompat:1.6.1")
 }

@@ -10,7 +10,7 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
 
     // Database Info
     private static final String DATABASE_NAME = "CropDiagnosisApp.db";
-    private static final int DATABASE_VERSION = 3; // Increased version for age column
+    private static final int DATABASE_VERSION = 4; // Increased for TipOfTheDay table
 
     // User Table
     public static final String TABLE_USERS = "users";
@@ -30,6 +30,11 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_CROP_TYPE = "crop_type";
     public static final String COLUMN_FARM_SIZE = "farm_size";
     public static final String COLUMN_PHONE_NUMBER = "phone_number";
+
+    // TipOfTheDay Table
+    public static final String TABLE_TIPS = "TipOfTheDay";
+    public static final String COLUMN_TIP_ID = "id";
+    public static final String COLUMN_TIP_TEXT = "tip";
 
     // Create User Table SQL
     private static final String CREATE_USER_TABLE = "CREATE TABLE " + TABLE_USERS + " (" +
@@ -52,6 +57,11 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
             "FOREIGN KEY(" + COLUMN_FOREIGN_KEY_USER_ID + ") REFERENCES " +
             TABLE_USERS + "(" + COLUMN_USER_ID + ")" + ")";
 
+    // Create TipOfTheDay Table SQL
+    private static final String CREATE_TIP_TABLE = "CREATE TABLE " + TABLE_TIPS + " (" +
+            COLUMN_TIP_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            COLUMN_TIP_TEXT + " TEXT NOT NULL" + ")";
+
     public UserDatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -60,19 +70,55 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_USER_TABLE);
         db.execSQL(CREATE_USER_INFO_TABLE);
+        db.execSQL(CREATE_TIP_TABLE);
+
+        // Insert default 10 tips
+        insertDefaultTips(db);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         if (oldVersion < 2) {
-            // Add gender and region columns
             db.execSQL("ALTER TABLE " + TABLE_USERS + " ADD COLUMN " + COLUMN_USER_GENDER + " TEXT");
             db.execSQL("ALTER TABLE " + TABLE_USERS + " ADD COLUMN " + COLUMN_USER_REGION + " TEXT");
         }
         if (oldVersion < 3) {
-            // Add age column
             db.execSQL("ALTER TABLE " + TABLE_USERS + " ADD COLUMN " + COLUMN_USER_AGE + " TEXT");
         }
+        if (oldVersion < 4) {
+            db.execSQL(CREATE_TIP_TABLE);
+            insertDefaultTips(db);
+        }
+    }
+
+    // Insert default 10 tips
+    private void insertDefaultTips(SQLiteDatabase db) {
+        String[] tips = {
+                "Water your crops early in the morning to reduce evaporation.",
+                "Use organic compost to improve soil fertility.",
+                "Rotate crops every season to maintain soil nutrients.",
+                "Monitor for pests regularly to prevent infestations.",
+                "Mulch around plants to retain soil moisture.",
+                "Prune unnecessary leaves to help plants grow better.",
+                "Apply fertilizer according to soil test recommendations.",
+                "Protect young plants from strong winds and heavy rain.",
+                "Harvest crops at the right maturity stage for best quality.",
+                "Use drip irrigation to save water and deliver nutrients efficiently."
+        };
+
+        for (String tip : tips) {
+            ContentValues values = new ContentValues();
+            values.put(COLUMN_TIP_TEXT, tip);
+            db.insert(TABLE_TIPS, null, values);
+        }
+    }
+
+    // Get all tips
+    public Cursor getAllTips() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.query(TABLE_TIPS,
+                new String[]{COLUMN_TIP_ID, COLUMN_TIP_TEXT},
+                null, null, null, null, null);
     }
 
     // Add new user with basic info
@@ -117,7 +163,7 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
         return rowsAffected > 0;
     }
 
-    // Get user info by user ID (updated to include age)
+    // Get user info by user ID
     public Cursor getUserInfo(long userId) {
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT u." + COLUMN_USER_NAME + ", u." + COLUMN_USER_EMAIL +
@@ -149,7 +195,7 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
         return userId;
     }
 
-    // Check if user exists (for backward compatibility)
+    // Check if user exists
     public boolean checkUser(String email, String password) {
         return authenticateUser(email, password) != -1;
     }
