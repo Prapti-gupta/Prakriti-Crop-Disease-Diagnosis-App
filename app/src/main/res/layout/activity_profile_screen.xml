@@ -205,7 +205,7 @@
 
             <!-- Contact Us Button -->
             <LinearLayout
-                android:id="@+id/btnContactUs"
+                android:id="@+id/btnContactExpert"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 android:orientation="horizontal"
@@ -220,7 +220,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Contact Us"
+                    android:text="Contact Experts"
                     android:textSize="16sp"
                     android:textColor="#333333" />
 

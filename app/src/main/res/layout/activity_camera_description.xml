@@ -41,7 +41,7 @@
                 android:layout_gravity="center"
                 android:text="Early Blight"
                 android:textColor="#FFFFFF"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 android:fontFamily="sans-serif-medium"
                 android:paddingStart="16dp"

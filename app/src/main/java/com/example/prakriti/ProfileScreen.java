@@ -36,7 +36,7 @@ public class ProfileScreen extends AppCompatActivity {
         LinearLayout navNPK = findViewById(R.id.nav_npk);
         LinearLayout navProfile = findViewById(R.id.nav_profile);
         ImageButton btnCamera = findViewById(R.id.btn_camera);
-        LinearLayout contact_trainer = findViewById(R.id.btnContactUs);
+        LinearLayout contact_expert = findViewById(R.id.btnContactExpert);
         LinearLayout edit_profile = findViewById(R.id.btnEditProfile);
         LinearLayout help = findViewById(R.id.btnHelpFaq);
         LinearLayout notification = findViewById(R.id.btnNotifications);
@@ -56,7 +56,7 @@ public class ProfileScreen extends AppCompatActivity {
             }
         });
 
-        contact_trainer.setOnClickListener(new View.OnClickListener() {
+        contact_expert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ProfileScreen.this, ContactTrainer.class);
