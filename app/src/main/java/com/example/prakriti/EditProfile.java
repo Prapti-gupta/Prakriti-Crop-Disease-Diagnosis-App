@@ -7,13 +7,13 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,10 +21,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class EditProfile extends AppCompatActivity {
 
-    private EditText editName, editAge, editRegion, phoneNumber;
+    private EditText editName, editAge, editRegion, phoneNumber, cropsGrown;
     private AutoCompleteTextView editGender;
     private TextView namee, editusername;
-    private LinearLayout emailSection; // To hide email section
     private Button saveButton;
     private ImageButton back;
     private ImageView profile_picture;
@@ -44,12 +43,13 @@ public class EditProfile extends AppCompatActivity {
         // Initialize database helper
         dbHelper = new UserDatabaseHelper(this);
 
-        // Initialize views
+        // Initialize views - CORRECTED FIELD MAPPINGS
         editName = findViewById(R.id.edit_name);           // Full Name field
         editGender = findViewById(R.id.edit_gender);       // Gender field
-        editAge = findViewById(R.id.edit_region);          // Age field (XML shows "Age" label)
-        editRegion = findViewById(R.id.farm_location);     // Region field (XML shows "Region" label)
+        editAge = findViewById(R.id.edit_region);          // Age field (this was the confusion!)
+        editRegion = findViewById(R.id.farm_location);     // Region field
         phoneNumber = findViewById(R.id.phone_number);     // Phone Number field
+        cropsGrown = findViewById(R.id.crops_grown);       // Crops field
         saveButton = findViewById(R.id.save_button);
         back = findViewById(R.id.back_button);
         namee = findViewById(R.id.name);
@@ -59,27 +59,56 @@ public class EditProfile extends AppCompatActivity {
         // Set profile picture based on gender
         setProfilePicture(profile_picture);
 
-        // Set up gender field to allow typing with suggestions
+        // Set up gender dropdown - CORRECTED
         String[] genderOptions = {"Male", "Female"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_dropdown_item_1line, genderOptions);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, genderOptions) {
+            @Override
+            public View getView(int position, View convertView, android.view.ViewGroup parent) {
+                View view = super.getView(position, convertView, parent);
+                TextView textView = (TextView) view;
+                textView.setTextColor(getResources().getColor(android.R.color.black));
+                return view;
+            }
+
+            @Override
+            public View getDropDownView(int position, View convertView, android.view.ViewGroup parent) {
+                View view = super.getDropDownView(position, convertView, parent);
+                TextView textView = (TextView) view;
+                textView.setTextColor(getResources().getColor(android.R.color.black));
+                textView.setBackgroundColor(getResources().getColor(android.R.color.white));
+                textView.setPadding(20, 20, 20, 20);
+                return view;
+            }
+        };
         editGender.setAdapter(adapter);
 
-        // IMPORTANT: These settings allow typing and keyboard to appear
-        editGender.setThreshold(1); // Show suggestions after 1 character
-        editGender.setFocusable(true); // Allow focus
-        editGender.setFocusableInTouchMode(true); // Allow touch focus
-        editGender.setClickable(true); // Allow clicks
-        editGender.setCursorVisible(true); // Show cursor
+        // Configure dropdown to prevent typing and show proper behavior
+        editGender.setThreshold(1000); // High threshold to prevent auto-show
+        editGender.setInputType(0); // No input type
+        editGender.setKeyListener(null); // Prevent typing
+        editGender.setFocusable(false); // Prevent focus
+        editGender.setCursorVisible(false); // Hide cursor
+        editGender.setDropDownBackgroundResource(android.R.color.white);
 
-        // Optional: Show dropdown when clicked if empty
+        // Show dropdown when clicked and hide keyboard
         editGender.setOnClickListener(v -> {
-            String currentText = editGender.getText().toString();
-            if (currentText.isEmpty()) {
-                editGender.showDropDown();
+            editGender.showDropDown();
+            // Hide keyboard
+            android.view.inputmethod.InputMethodManager imm = (android.view.inputmethod.InputMethodManager) getSystemService(android.content.Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(editGender.getWindowToken(), 0);
+        });
+
+        // Handle item selection
+        editGender.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                editGender.dismissDropDown();
+                // Update profile picture immediately when gender changes
+                setProfilePicture(profile_picture);
+                // Hide keyboard
+                android.view.inputmethod.InputMethodManager imm = (android.view.inputmethod.InputMethodManager) getSystemService(android.content.Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(editGender.getWindowToken(), 0);
             }
-            // Always request focus to show keyboard
-            editGender.requestFocus();
         });
 
         // Back button
@@ -96,6 +125,7 @@ public class EditProfile extends AppCompatActivity {
             String userAge = editAge.getText().toString().trim();
             String userRegion = editRegion.getText().toString().trim();
             String userPhoneNumber = phoneNumber.getText().toString().trim();
+            String userCropsGrown = cropsGrown.getText().toString().trim();
 
             if (userId != -1) {
                 // Validate required fields
@@ -137,7 +167,7 @@ public class EditProfile extends AppCompatActivity {
                 }
 
                 // Update user profile with normalized gender
-                boolean updated = updateUserProfile(userId, userName, normalizedGender, userAge, userRegion, userPhoneNumber);
+                boolean updated = updateUserProfile(userId, userName, normalizedGender, userAge, userRegion, userPhoneNumber, userCropsGrown);
 
                 if (updated) {
                     Toast.makeText(EditProfile.this, "Profile Updated Successfully", Toast.LENGTH_SHORT).show();
@@ -156,6 +186,9 @@ public class EditProfile extends AppCompatActivity {
                     }
                     if (!userPhoneNumber.isEmpty()) {
                         editor.putString("phoneNumber", userPhoneNumber);
+                    }
+                    if (!userCropsGrown.isEmpty()) {
+                        editor.putString("cropsGrown", userCropsGrown);
                     }
                     editor.apply();
 
@@ -177,13 +210,16 @@ public class EditProfile extends AppCompatActivity {
     }
 
     private void setProfilePicture(ImageView profilePicture) {
-        // Get gender from SharedPreferences
-        String gender = sharedPreferences.getString("gender", "Male"); // Default Male
+        // Get gender from current selection or SharedPreferences
+        String currentGender = editGender.getText().toString().trim();
+        if (currentGender.isEmpty()) {
+            currentGender = sharedPreferences.getString("gender", "Male");
+        }
 
         // Debug logging
-        android.util.Log.d("EditProfile", "Retrieved gender: " + gender);
+        android.util.Log.d("EditProfile", "Setting profile picture for gender: " + currentGender);
 
-        if ("Female".equalsIgnoreCase(gender)) {
+        if ("Female".equalsIgnoreCase(currentGender)) {
             profilePicture.setImageResource(R.drawable.female_farmer_green);
         } else {
             profilePicture.setImageResource(R.drawable.male_farmer_green);
@@ -205,6 +241,7 @@ public class EditProfile extends AppCompatActivity {
         String spRegion = sharedPreferences.getString("region", "");
         String spAge = sharedPreferences.getString("age", "");
         String spPhone = sharedPreferences.getString("phoneNumber", "");
+        String spCrops = sharedPreferences.getString("cropsGrown", "");
 
         // Then load from database to fill in any missing data
         Cursor cursor = dbHelper.getUserInfo(userId);
@@ -214,6 +251,7 @@ public class EditProfile extends AppCompatActivity {
             String dbAge = cursor.getString(cursor.getColumnIndexOrThrow(UserDatabaseHelper.COLUMN_USER_AGE));
             String dbRegion = cursor.getString(cursor.getColumnIndexOrThrow(UserDatabaseHelper.COLUMN_USER_REGION));
             String dbPhone = cursor.getString(cursor.getColumnIndexOrThrow(UserDatabaseHelper.COLUMN_PHONE_NUMBER));
+            String dbCrops = cursor.getString(cursor.getColumnIndexOrThrow(UserDatabaseHelper.COLUMN_CROP_TYPE));
 
             // Use SharedPreferences data if available, otherwise use database data
             String finalName = !spName.isEmpty() ? spName : (dbName != null ? dbName : "");
@@ -221,6 +259,7 @@ public class EditProfile extends AppCompatActivity {
             String finalAge = !spAge.isEmpty() ? spAge : (dbAge != null ? dbAge : "");
             String finalRegion = !spRegion.isEmpty() ? spRegion : (dbRegion != null ? dbRegion : "");
             String finalPhone = !spPhone.isEmpty() ? spPhone : (dbPhone != null ? dbPhone : "");
+            String finalCrops = !spCrops.isEmpty() ? spCrops : (dbCrops != null ? dbCrops : "");
 
             // Display profile information in header
             namee.setText(!finalName.isEmpty() ? finalName : "User");
@@ -232,9 +271,10 @@ public class EditProfile extends AppCompatActivity {
             editAge.setText(finalAge);
             editRegion.setText(finalRegion);
             phoneNumber.setText(finalPhone);
+            cropsGrown.setText(finalCrops);
 
             // Update SharedPreferences with database data if SharedPreferences is missing some data
-            if (spName.isEmpty() || spGender.isEmpty() || spRegion.isEmpty() || spAge.isEmpty() || spPhone.isEmpty()) {
+            if (spName.isEmpty() || spGender.isEmpty() || spRegion.isEmpty() || spAge.isEmpty() || spPhone.isEmpty() || spCrops.isEmpty()) {
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 if (spName.isEmpty() && !finalName.isEmpty()) {
                     editor.putString("userName", finalName);
@@ -251,6 +291,9 @@ public class EditProfile extends AppCompatActivity {
                 if (spPhone.isEmpty() && !finalPhone.isEmpty()) {
                     editor.putString("phoneNumber", finalPhone);
                 }
+                if (spCrops.isEmpty() && !finalCrops.isEmpty()) {
+                    editor.putString("cropsGrown", finalCrops);
+                }
                 editor.apply();
             }
         }
@@ -259,7 +302,7 @@ public class EditProfile extends AppCompatActivity {
         }
     }
 
-    private boolean updateUserProfile(long userId, String name, String gender, String age, String region, String phoneNumber) {
+    private boolean updateUserProfile(long userId, String name, String gender, String age, String region, String phoneNumber, String cropsGrown) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         // Update users table
@@ -279,7 +322,7 @@ public class EditProfile extends AppCompatActivity {
         // Update user_info table
         ContentValues profileValues = new ContentValues();
         profileValues.put(UserDatabaseHelper.COLUMN_PHONE_NUMBER, phoneNumber);
-        profileValues.put(UserDatabaseHelper.COLUMN_CROP_TYPE, ""); // Not using
+        profileValues.put(UserDatabaseHelper.COLUMN_CROP_TYPE, cropsGrown);
         profileValues.put(UserDatabaseHelper.COLUMN_FARM_SIZE, ""); // Not using
         profileValues.put(UserDatabaseHelper.COLUMN_FARM_LOCATION, ""); // Not using
 

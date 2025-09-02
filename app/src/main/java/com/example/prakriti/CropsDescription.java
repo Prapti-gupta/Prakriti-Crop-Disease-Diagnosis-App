@@ -162,10 +162,12 @@ public class CropsDescription extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(CropsDescription.this, Crops.class);
+        // Clear all activities above TargetActivity from the back stack
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
-        overridePendingTransition(0, 0);
-        finish();
+        finish(); // optional, closes CurrentActivity
     }
+
 
     @Override
     protected void onDestroy() {

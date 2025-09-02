@@ -358,4 +358,14 @@ public class CameraActivity extends AppCompatActivity {
         else if (requestCode == REQUEST_STORAGE_PERMISSION && grantResults.length > 0
                 && grantResults[0] == PackageManager.PERMISSION_GRANTED) openGallery();
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(CameraActivity.this, HomeScreen.class);
+        // Clear all activities above TargetActivity from the back stack
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        startActivity(intent);
+        finish(); // optional, closes CurrentActivity
+    }
+
 }

@@ -35,7 +35,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="NPK Calculator"
+                        android:text="Fertilizer Planner"
                         android:textSize="32sp"
                         android:textStyle="bold"
                         android:textColor="@color/primary_green"
@@ -51,14 +51,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Calculate nutrient content in fertilizers"
+                        android:text="Plan your fertilizer application strategy"
                         android:textSize="16sp"
                         android:textColor="@color/text_secondary"
                         android:gravity="center" />
 
                 </LinearLayout>
 
-                <!-- Enhanced Fertilizer Input Card -->
+                <!-- Enhanced Target Requirements Input Card -->
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -68,7 +68,7 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="537dp"
+                        android:layout_height="437dp"
                         android:background="@color/white"
                         android:textColor="@color/black"
                         android:orientation="vertical"
@@ -92,19 +92,19 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="Fertilizer Information"
+                                android:text="Target Nutrient Requirements"
                                 android:textColor="@color/text_primary"
                                 android:textSize="20sp"
                                 android:textStyle="bold" />
 
                         </LinearLayout>
 
-                        <!-- Fertilizer Amount -->
+                        <!-- Target Nitrogen -->
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="8dp"
-                            android:text="Fertilizer Amount (kg)"
+                            android:text="Target Nitrogen (N) Amount (kg)"
                             android:textColor="@color/text_primary"
                             android:textSize="14sp"
                             android:textStyle="bold" />
@@ -115,18 +115,18 @@
                             android:layout_height="56dp"
                             android:layout_marginBottom="20dp"
                             android:background="@drawable/indicator_inactive"
-                            android:hint="Enter amount in kg"
+                            android:hint="Enter required nitrogen (kg)"
                             android:inputType="numberDecimal"
                             android:padding="16dp"
                             android:textColor="@color/text_primary"
                             android:textSize="16sp" />
 
-                        <!-- N Percentage -->
+                        <!-- Target Phosphorus -->
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="8dp"
-                            android:text="Nitrogen (N) Percentage"
+                            android:text="Target Phosphorus (P) Amount (kg)"
                             android:textColor="@color/text_dark_green"
                             android:textSize="14sp"
                             android:textStyle="bold" />
@@ -137,18 +137,18 @@
                             android:layout_height="56dp"
                             android:layout_marginBottom="20dp"
                             android:background="@drawable/indicator_inactive"
-                            android:hint="Enter N percentage"
+                            android:hint="Enter required phosphorus (kg)"
                             android:inputType="numberDecimal"
                             android:padding="16dp"
                             android:textColor="@color/text_primary"
                             android:textSize="16sp" />
 
-                        <!-- P Percentage -->
+                        <!-- Target Potassium -->
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="8dp"
-                            android:text="Phosphorus (P) Percentage"
+                            android:text="Target Potassium (K) Amount (kg)"
                             android:textColor="@color/text_dark_green"
                             android:textSize="14sp"
                             android:textStyle="bold" />
@@ -157,34 +157,19 @@
                             android:id="@+id/etPhosphorusPercent"
                             android:layout_width="match_parent"
                             android:layout_height="56dp"
-                            android:layout_marginBottom="20dp"
                             android:background="@drawable/indicator_inactive"
-                            android:hint="Enter P percentage"
+                            android:hint="Enter required potassium (kg)"
                             android:inputType="numberDecimal"
                             android:padding="16dp"
                             android:textColor="@color/text_primary"
                             android:textSize="16sp" />
 
-                        <!-- K Percentage -->
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="8dp"
-                            android:text="Potassium (K) Percentage"
-                            android:textColor="@color/text_dark_green"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-
+                        <!-- Hidden field to maintain layout consistency -->
                         <EditText
                             android:id="@+id/etPotassiumPercent"
                             android:layout_width="match_parent"
-                            android:layout_height="56dp"
-                            android:background="@drawable/indicator_inactive"
-                            android:hint="Enter K percentage"
-                            android:inputType="numberDecimal"
-                            android:padding="16dp"
-                            android:textColor="@color/text_primary"
-                            android:textSize="16sp" />
+                            android:layout_height="0dp"
+                            android:visibility="gone" />
 
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -194,7 +179,7 @@
                     android:id="@+id/btnCalculate"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
-                    android:text="Calculate NPK"
+                    android:text="Calculate Fertilizer Needs"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:textColor="@android:color/white"
@@ -239,14 +224,14 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="NPK Results"
+                                android:text="Fertilizer Requirements"
                                 android:textSize="22sp"
                                 android:textStyle="bold"
                                 android:textColor="@color/text_primary" />
 
                         </LinearLayout>
 
-                        <!-- Enhanced Nitrogen Result -->
+                        <!-- Enhanced Urea Result -->
                         <androidx.cardview.widget.CardView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -281,7 +266,7 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Nitrogen (N)"
+                                        android:text="Urea (46% N)"
                                         android:textSize="16sp"
                                         android:textStyle="bold"
                                         android:textColor="@color/text_primary" />
@@ -289,7 +274,7 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Essential for leaf growth"
+                                        android:text="Primary nitrogen source"
                                         android:textSize="12sp"
                                         android:textColor="@color/text_secondary" />
 
@@ -307,7 +292,7 @@
                             </LinearLayout>
                         </androidx.cardview.widget.CardView>
 
-                        <!-- Enhanced Phosphorus Result -->
+                        <!-- Enhanced DAP Result -->
                         <androidx.cardview.widget.CardView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -342,7 +327,7 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Phosphorus (P)"
+                                        android:text="DAP (18% N, 46% P)"
                                         android:textSize="16sp"
                                         android:textStyle="bold"
                                         android:textColor="@color/text_primary" />
@@ -350,7 +335,7 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Promotes root development"
+                                        android:text="Primary phosphorus source"
                                         android:textSize="12sp"
                                         android:textColor="@color/text_secondary" />
 
@@ -368,7 +353,7 @@
                             </LinearLayout>
                         </androidx.cardview.widget.CardView>
 
-                        <!-- Enhanced Potassium Result -->
+                        <!-- Enhanced MOP Result -->
                         <androidx.cardview.widget.CardView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -403,7 +388,7 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Potassium (K)"
+                                        android:text="MOP (60% K)"
                                         android:textSize="16sp"
                                         android:textStyle="bold"
                                         android:textColor="@color/text_primary" />
@@ -411,7 +396,7 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Enhances disease resistance"
+                                        android:text="Primary potassium source"
                                         android:textSize="12sp"
                                         android:textColor="@color/text_secondary" />
 
@@ -422,7 +407,6 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="0.0 kg"
-
                                     android:textSize="18sp"
                                     android:textStyle="bold"
                                     android:textColor="@color/text_dark_green" />
@@ -430,7 +414,7 @@
                             </LinearLayout>
                         </androidx.cardview.widget.CardView>
 
-                        <!-- Total NPK Summary -->
+                        <!-- Total Fertilizer Summary -->
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="2dp"
@@ -461,7 +445,7 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Total NPK Content"
+                                        android:text="Total Fertilizer Needed"
                                         android:textSize="20sp"
                                         android:textStyle="bold"
                                         android:textColor="@android:color/white" />
@@ -469,7 +453,7 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Combined nutrient weight"
+                                        android:text="Combined fertilizer weight"
                                         android:textSize="14sp"
                                         android:textColor="#E8F5E8" />
 

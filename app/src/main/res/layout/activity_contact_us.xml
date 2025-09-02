@@ -18,7 +18,7 @@
         <ImageView
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:src="@drawable/us1"
+            android:src="@drawable/contact_us1"
             android:layout_marginTop="30dp"
             android:layout_gravity="center_horizontal"/>
 
@@ -59,7 +59,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:backgroundTint="#337180"
+                android:backgroundTint="@color/primary_green_dark"
                 android:layout_marginTop="10dp"
                 android:onClick="call_p"
                 android:text="Call"/>
@@ -69,7 +69,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:backgroundTint="#337180"
+                android:backgroundTint="@color/primary_green_dark"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="5dp"
                 android:onClick="message_p"
@@ -80,7 +80,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:backgroundTint="#337180"
+                android:backgroundTint="@color/primary_green_dark"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="5dp"
                 android:onClick="email_p"
@@ -103,7 +103,7 @@
         <ImageView
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:src="@drawable/us1"
+            android:src="@drawable/contact_us2"
             android:layout_marginTop="30dp"
             android:layout_gravity="center_horizontal"/>
 
@@ -142,7 +142,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:backgroundTint="#337180"
+                android:backgroundTint="@color/primary_green_dark"
                 android:layout_marginTop="10dp"
                 android:onClick="call_t"
                 android:text="Call"/>
@@ -152,7 +152,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:backgroundTint="#337180"
+                android:backgroundTint="@color/primary_green_dark"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="5dp"
                 android:onClick="message_t"
@@ -163,7 +163,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:backgroundTint="#337180"
+                android:backgroundTint="@color/primary_green_dark"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="5dp"
                 android:onClick="email_t"

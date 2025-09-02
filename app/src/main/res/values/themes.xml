@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/primary_green</item>
         <item name="colorPrimaryVariant">@color/text_dark_green</item>
         <item name="colorOnPrimary">@android:color/white</item>
+        <item name="colorControlActivated">@color/primary_green</item>
 
         <!-- Status Bar Configuration -->
         <item name="android:statusBarColor">@color/primary_green</item>

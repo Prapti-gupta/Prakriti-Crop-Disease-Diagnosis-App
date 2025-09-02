@@ -147,4 +147,11 @@ public class Crops extends AppCompatActivity {
             cropDataManager.close();
         }
     }
+
+    public void onBackPressed() {
+        // Finish all activities and exit the app
+        finishAffinity();
+        System.exit(0);  // Optional, ensures process is killed
+    }
 }
+

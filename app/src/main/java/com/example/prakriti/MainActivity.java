@@ -1,16 +1,27 @@
 package com.example.prakriti;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.text.InputType;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
+import androidx.core.content.ContextCompat;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.textfield.MaterialAutoCompleteTextView;
+import com.google.android.material.textfield.TextInputLayout;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -37,23 +48,87 @@ public class MainActivity extends AppCompatActivity {
         Button b1 = findViewById(R.id.btn_submit);
         EditText etName = findViewById(R.id.et_name);
         EditText etRegion = findViewById(R.id.et_region);
-        AutoCompleteTextView actGender = findViewById(R.id.act_gender);
+        MaterialAutoCompleteTextView actGender = findViewById(R.id.act_gender);
+        TextInputLayout genderLayout = findViewById(R.id.til_gender);
 
-        // Set up gender dropdown
+        // Set up gender dropdown with white background
         String[] genderOptions = {"Male", "Female"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_dropdown_item, genderOptions);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, genderOptions) {
+            @Override
+            public View getView(int position, View convertView, android.view.ViewGroup parent) {
+                View view = super.getView(position, convertView, parent);
+                TextView textView = (TextView) view;
+                textView.setTextColor(Color.BLACK);
+                textView.setBackgroundColor(Color.WHITE);
+                return view;
+            }
+
+            @Override
+            public View getDropDownView(int position, View convertView, android.view.ViewGroup parent) {
+                View view = super.getDropDownView(position, convertView, parent);
+                TextView textView = (TextView) view;
+                textView.setTextColor(Color.BLACK);
+                textView.setBackgroundColor(Color.WHITE);
+                textView.setPadding(20, 20, 20, 20);
+                return view;
+            }
+        };
         actGender.setAdapter(adapter);
 
-        // White background for dropdown
-        actGender.setDropDownBackgroundResource(android.R.color.white);
+        // Configure MaterialAutoCompleteTextView properly
+        actGender.setInputType(0); // Prevent typing
+        actGender.setKeyListener(null);
+        actGender.setCursorVisible(false);
+        actGender.setShowSoftInputOnFocus(false);
 
-        // Prevent typing + hide keyboard
-        actGender.setInputType(InputType.TYPE_NULL);
-        actGender.setFocusable(false);
+        // Force white background for dropdown regardless of theme
+        actGender.setDropDownBackgroundDrawable(new ColorDrawable(Color.WHITE));
 
-        // Show dropdown when clicked
-        actGender.setOnClickListener(v -> actGender.showDropDown());
+        // Remove anchor to prevent positioning issues - let it position naturally
+        actGender.setDropDownVerticalOffset(0);
+        actGender.setDropDownHeight(android.widget.ListPopupWindow.WRAP_CONTENT);
+
+        // Prevent keyboard from appearing on focus
+        actGender.setOnFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                if (imm != null) {
+                    imm.hideSoftInputFromWindow(actGender.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                }
+            }
+        });
+
+        // Single OnClickListener
+        actGender.setOnClickListener(v -> {
+            // Always hide keyboard first
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            if (imm != null) {
+                imm.hideSoftInputFromWindow(actGender.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+            }
+
+            // Clear focus from other fields to prevent keyboard
+            etName.clearFocus();
+            etRegion.clearFocus();
+
+
+            // Show dropdown after a short delay
+            actGender.postDelayed(() -> {
+                actGender.showDropDown();
+            }, 50);
+        });
+
+        // Handle item selection
+        actGender.setOnClickListener(v -> {
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            if (imm != null) {
+                imm.hideSoftInputFromWindow(actGender.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+            }
+            etName.clearFocus();
+            etRegion.clearFocus();
+
+            actGender.postDelayed(actGender::showDropDown, 50);
+        });
+
 
         b1.setOnClickListener(v -> {
             String name = etName.getText().toString().trim();
@@ -106,4 +181,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public void onBackPressed() {
+        // Finish all activities and exit the app
+        finishAffinity();
+        System.exit(0);  // Optional, ensures process is killed
+    }
+
 }

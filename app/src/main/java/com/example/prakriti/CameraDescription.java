@@ -686,4 +686,14 @@ public class CameraDescription extends AppCompatActivity {
             dbHelper.close();
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(CameraDescription.this, CameraActivity.class);
+        // Clear all activities above TargetActivity from the back stack
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        startActivity(intent);
+        finish(); // optional, closes CurrentActivity
+    }
+
 }
