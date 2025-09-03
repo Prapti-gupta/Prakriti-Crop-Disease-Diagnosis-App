@@ -33,4 +33,13 @@ public class Instruction4 extends AppCompatActivity {
 
         });
     }
+
+    public void onBackPressed() {
+        Intent intent = new Intent(Instruction4.this, Instruction3.class);
+        // Clear all activities above TargetActivity from the back stack
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        startActivity(intent);
+        finish(); // optional, closes CurrentActivity
+    }
+
 }

@@ -32,11 +32,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Check if user has already entered their details
+        // Check if user has completed the entire flow (including instructions)
         SharedPreferences sharedPreferences = getSharedPreferences("PrakritiLogin", MODE_PRIVATE);
-        boolean isUserRegistered = sharedPreferences.getBoolean("isUserRegistered", false);
+        boolean isUserLoggedIn = sharedPreferences.getBoolean("isUserLoggedIn", false);
 
-        if (isUserRegistered) {
+        if (isUserLoggedIn) {
             Intent intent = new Intent(MainActivity.this, HomeScreen.class);
             startActivity(intent);
             finish();
@@ -110,7 +110,6 @@ public class MainActivity extends AppCompatActivity {
             etName.clearFocus();
             etRegion.clearFocus();
 
-
             // Show dropdown after a short delay
             actGender.postDelayed(() -> {
                 actGender.showDropDown();
@@ -128,7 +127,6 @@ public class MainActivity extends AppCompatActivity {
 
             actGender.postDelayed(actGender::showDropDown, 50);
         });
-
 
         b1.setOnClickListener(v -> {
             String name = etName.getText().toString().trim();
@@ -163,12 +161,14 @@ public class MainActivity extends AppCompatActivity {
             long userId = dbHelper.addUser(name, dummyEmail, dummyPassword, normalizedGender, region);
 
             if (userId != -1) {
+                // Save user data but DON'T mark as logged in yet
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putLong("userId", userId);
-                editor.putBoolean("isUserRegistered", true);
+                editor.putBoolean("isUserRegistered", true); // Keep this for data validation
                 editor.putString("userName", name);
                 editor.putString("gender", normalizedGender);
                 editor.putString("region", region);
+                // Don't set isUserLoggedIn = true here!
                 editor.apply();
 
                 Toast.makeText(MainActivity.this, "Welcome " + name + "!", Toast.LENGTH_SHORT).show();
@@ -188,5 +188,4 @@ public class MainActivity extends AppCompatActivity {
         finishAffinity();
         System.exit(0);  // Optional, ensures process is killed
     }
-
 }

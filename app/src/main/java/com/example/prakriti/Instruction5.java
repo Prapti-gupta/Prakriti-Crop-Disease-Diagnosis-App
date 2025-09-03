@@ -7,6 +7,7 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -54,25 +55,35 @@ public class Instruction5 extends AppCompatActivity {
         Button b2 = findViewById(R.id.btn_allow);
 
         b2.setOnClickListener(v -> {
-
             Toast.makeText(Instruction5.this, "Daily Reminders Set", Toast.LENGTH_SHORT).show();
             scheduleDailyReminders();
 
+            // Mark user as fully logged in after completing instructions
+            markUserAsLoggedIn();
+
             Intent intent = new Intent(Instruction5.this, HomeScreen.class);
             startActivity(intent);
             finish();
             overridePendingTransition(0, 0);
-
         });
 
         b1.setOnClickListener(v -> {
+            // Mark user as fully logged in even if they skip notifications
+            markUserAsLoggedIn();
 
             Intent intent = new Intent(Instruction5.this, HomeScreen.class);
             startActivity(intent);
             finish();
             overridePendingTransition(0, 0);
-
         });
+    }
+
+    // Method to mark user as fully logged in
+    private void markUserAsLoggedIn() {
+        SharedPreferences sharedPreferences = getSharedPreferences("PrakritiLogin", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean("isUserLoggedIn", true);
+        editor.apply();
     }
 
     // 🔔 Schedule both reminders (8 AM & 6 PM)
@@ -123,7 +134,6 @@ public class Instruction5 extends AppCompatActivity {
 
         setExactAlarm(alarmManager, calendarEvening.getTimeInMillis(), pendingIntentEvening);
     }
-
 
     @SuppressLint("ScheduleExactAlarm")
     private void setExactAlarm(AlarmManager alarmManager, long triggerAtMillis, PendingIntent pi) {

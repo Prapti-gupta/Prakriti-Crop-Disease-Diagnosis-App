@@ -32,4 +32,12 @@ public class Instruction3 extends AppCompatActivity {
             overridePendingTransition(0, 0);
         });
     }
+
+    public void onBackPressed() {
+        Intent intent = new Intent(Instruction3.this, Instruction2.class);
+        // Clear all activities above TargetActivity from the back stack
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        startActivity(intent);
+        finish(); // optional, closes CurrentActivity
+    }
 }
