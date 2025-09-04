@@ -164,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
                 // Save user data but DON'T mark as logged in yet
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putLong("userId", userId);
-                editor.putBoolean("isUserRegistered", true); // Keep this for data validation
+                editor.putBoolean("isUserRegistered", false);
                 editor.putString("userName", name);
                 editor.putString("gender", normalizedGender);
                 editor.putString("region", region);

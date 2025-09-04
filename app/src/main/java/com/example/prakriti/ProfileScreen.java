@@ -40,6 +40,7 @@ public class ProfileScreen extends AppCompatActivity {
         LinearLayout edit_profile = findViewById(R.id.btnEditProfile);
         LinearLayout help = findViewById(R.id.btnHelpFaq);
         LinearLayout notification = findViewById(R.id.btnNotifications);
+        LinearLayout instructions = findViewById(R.id.btnInstructions);
         LinearLayout about = findViewById(R.id.btnAboutApp);
         LinearLayout logout = findViewById(R.id.btnLogout);
 
@@ -60,6 +61,14 @@ public class ProfileScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ProfileScreen.this, ContactTrainer.class);
+                startActivity(intent);
+            }
+        });
+
+        instructions.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProfileScreen.this, OfflineInstruction.class);
                 startActivity(intent);
             }
         });
@@ -88,17 +97,38 @@ public class ProfileScreen extends AppCompatActivity {
             }
         });
 
+        // Replace your current logout click listener with this fixed version:
+
+        // Replace your current logout click listener with this fixed version:
+
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                // Clear ALL user session data
                 SharedPreferences sharedPreferences = getSharedPreferences("PrakritiLogin", MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putBoolean("isUserRegistered", false);
-                editor.apply();
 
+                // Clear all the key flags that determine login state
+                editor.putBoolean("isUserLoggedIn", false);  // This is the main flag checked in MainActivity
+                editor.putBoolean("isUserRegistered", false);
+
+                // Optionally clear other user data as well
+                editor.remove("userId");
+                editor.remove("userName");
+                editor.remove("gender");
+                editor.remove("region");
+
+                editor.apply(); // Apply changes
+
+                // Navigate to MainActivity and clear the activity stack
                 Intent intent = new Intent(ProfileScreen.this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
+
+                // Use smooth transition animation (no black screen)
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+
+                finish(); // Finish current activity
             }
         });
 
